@@ -47,6 +47,43 @@ CREATE TABLE ar_internal_metadata (
 
 
 --
+-- Name: carts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE carts (
+    id integer NOT NULL,
+    token character varying,
+    line_item_id integer,
+    shipping_address character varying,
+    email character varying,
+    first_name character varying,
+    last_name character varying,
+    complete boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: carts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE carts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: carts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE carts_id_seq OWNED BY carts.id;
+
+
+--
 -- Name: categories; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -107,6 +144,38 @@ CREATE SEQUENCE colors_id_seq
 --
 
 ALTER SEQUENCE colors_id_seq OWNED BY colors.id;
+
+
+--
+-- Name: line_items; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE line_items (
+    id integer NOT NULL,
+    size_id integer,
+    item_quantity integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: line_items_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE line_items_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: line_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE line_items_id_seq OWNED BY line_items.id;
 
 
 --
@@ -225,9 +294,9 @@ ALTER SEQUENCE socks_id_seq OWNED BY socks.id;
 
 CREATE TABLE styles (
     id integer NOT NULL,
-    type character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    name character varying
 );
 
 
@@ -252,6 +321,19 @@ ALTER SEQUENCE styles_id_seq OWNED BY styles.id;
 
 --
 -- Name: categories id; Type: DEFAULT; Schema: public; Owner: -
+<<<<<<< HEAD
+=======
+=======
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY carts ALTER COLUMN id SET DEFAULT nextval('carts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
@@ -259,6 +341,12 @@ ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_s
 
 --
 -- Name: colors id; Type: DEFAULT; Schema: public; Owner: -
+<<<<<<< HEAD
+=======
+=======
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY colors ALTER COLUMN id SET DEFAULT nextval('colors_id_seq'::regclass);
@@ -266,27 +354,64 @@ ALTER TABLE ONLY colors ALTER COLUMN id SET DEFAULT nextval('colors_id_seq'::reg
 
 --
 -- Name: refile_attachments id; Type: DEFAULT; Schema: public; Owner: -
+<<<<<<< HEAD
+=======
+=======
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY line_items ALTER COLUMN id SET DEFAULT nextval('line_items_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY refile_attachments ALTER COLUMN id SET DEFAULT nextval('refile_attachments_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
 -- Name: sizes id; Type: DEFAULT; Schema: public; Owner: -
+=======
+<<<<<<< HEAD
+-- Name: sizes id; Type: DEFAULT; Schema: public; Owner: -
+=======
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY sizes ALTER COLUMN id SET DEFAULT nextval('sizes_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
 -- Name: socks id; Type: DEFAULT; Schema: public; Owner: -
+=======
+<<<<<<< HEAD
+-- Name: socks id; Type: DEFAULT; Schema: public; Owner: -
+=======
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY socks ALTER COLUMN id SET DEFAULT nextval('socks_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
 -- Name: styles id; Type: DEFAULT; Schema: public; Owner: -
+=======
+<<<<<<< HEAD
+-- Name: styles id; Type: DEFAULT; Schema: public; Owner: -
+=======
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY styles ALTER COLUMN id SET DEFAULT nextval('styles_id_seq'::regclass);
@@ -294,6 +419,12 @@ ALTER TABLE ONLY styles ALTER COLUMN id SET DEFAULT nextval('styles_id_seq'::reg
 
 --
 -- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+<<<<<<< HEAD
+=======
+=======
+-- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY ar_internal_metadata
@@ -302,6 +433,20 @@ ALTER TABLE ONLY ar_internal_metadata
 
 --
 -- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+<<<<<<< HEAD
+=======
+=======
+-- Name: carts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY carts
+    ADD CONSTRAINT carts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY categories
@@ -310,6 +455,12 @@ ALTER TABLE ONLY categories
 
 --
 -- Name: colors colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+<<<<<<< HEAD
+=======
+=======
+-- Name: colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY colors
@@ -318,6 +469,20 @@ ALTER TABLE ONLY colors
 
 --
 -- Name: refile_attachments refile_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+<<<<<<< HEAD
+=======
+=======
+-- Name: line_items_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY line_items
+    ADD CONSTRAINT line_items_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refile_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY refile_attachments
@@ -333,7 +498,15 @@ ALTER TABLE ONLY schema_migrations
 
 
 --
+<<<<<<< HEAD
 -- Name: sizes sizes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
+<<<<<<< HEAD
+-- Name: sizes sizes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
+-- Name: sizes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY sizes
@@ -341,7 +514,15 @@ ALTER TABLE ONLY sizes
 
 
 --
+<<<<<<< HEAD
 -- Name: socks socks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
+<<<<<<< HEAD
+-- Name: socks socks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
+-- Name: socks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY socks
@@ -349,11 +530,33 @@ ALTER TABLE ONLY socks
 
 
 --
+<<<<<<< HEAD
 -- Name: styles styles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
+<<<<<<< HEAD
+-- Name: styles styles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
+-- Name: styles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY styles
     ADD CONSTRAINT styles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_carts_on_line_item_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_carts_on_line_item_id ON carts USING btree (line_item_id);
+
+
+--
+-- Name: index_line_items_on_size_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_line_items_on_size_id ON line_items USING btree (size_id);
 
 
 --
@@ -407,7 +610,23 @@ ALTER TABLE ONLY socks
 
 
 --
+<<<<<<< HEAD
 -- Name: sizes fk_rails_b3883bf42b; Type: FK CONSTRAINT; Schema: public; Owner: -
+=======
+<<<<<<< HEAD
+-- Name: sizes fk_rails_b3883bf42b; Type: FK CONSTRAINT; Schema: public; Owner: -
+=======
+-- Name: fk_rails_a1e35bcaf6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY line_items
+    ADD CONSTRAINT fk_rails_a1e35bcaf6 FOREIGN KEY (size_id) REFERENCES sizes(id);
+
+
+--
+-- Name: fk_rails_b3883bf42b; Type: FK CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY sizes
@@ -415,7 +634,23 @@ ALTER TABLE ONLY sizes
 
 
 --
+<<<<<<< HEAD
 -- Name: socks fk_rails_e780b5db3f; Type: FK CONSTRAINT; Schema: public; Owner: -
+=======
+<<<<<<< HEAD
+-- Name: socks fk_rails_e780b5db3f; Type: FK CONSTRAINT; Schema: public; Owner: -
+=======
+-- Name: fk_rails_e0a1b303e5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY carts
+    ADD CONSTRAINT fk_rails_e0a1b303e5 FOREIGN KEY (line_item_id) REFERENCES line_items(id);
+
+
+--
+-- Name: fk_rails_e780b5db3f; Type: FK CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 --
 
 ALTER TABLE ONLY socks
@@ -436,6 +671,14 @@ ALTER TABLE ONLY socks
 
 SET search_path TO "$user", public;
 
+<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613'), ('20161115195615'), ('20161115200321');
+=======
+<<<<<<< HEAD
+INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613'), ('20161115195615'), ('20161115200321');
+=======
+INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613'), ('20161115195615'), ('20161115200321'), ('20161115202523'), ('20161115203107'), ('20161115203956');
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
+>>>>>>> 6b973fb82770d0747b0ca97ab88d079ebb00013f
 
 
