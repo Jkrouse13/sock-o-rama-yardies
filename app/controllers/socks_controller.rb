@@ -2,12 +2,12 @@ class SocksController < ApplicationController
   def index #has template renders view
     @socks = Sock.all
     #split and stuff
-    render :json @socks
+    render json: @socks
   end
 
   def show #has template, renders view
-    @socks = Sock.find(params :id)
-    render :json @socks
+    @sock = Sock.find(params :id)
+    render json: @sock
   end
 
   # def new #has template, displays form
