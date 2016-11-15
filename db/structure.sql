@@ -2,11 +2,12 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.4
--- Dumped by pg_dump version 9.5.4
+-- Dumped from database version 9.6.1
+-- Dumped by pg_dump version 9.6.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -319,6 +320,9 @@ ALTER SEQUENCE styles_id_seq OWNED BY styles.id;
 
 
 --
+<<<<<<< HEAD
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: -
+=======
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -327,19 +331,27 @@ ALTER TABLE ONLY carts ALTER COLUMN id SET DEFAULT nextval('carts_id_seq'::regcl
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
+-- Name: colors id; Type: DEFAULT; Schema: public; Owner: -
+=======
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY colors ALTER COLUMN id SET DEFAULT nextval('colors_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
+-- Name: refile_attachments id; Type: DEFAULT; Schema: public; Owner: -
+=======
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -348,34 +360,51 @@ ALTER TABLE ONLY line_items ALTER COLUMN id SET DEFAULT nextval('line_items_id_s
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY refile_attachments ALTER COLUMN id SET DEFAULT nextval('refile_attachments_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
+-- Name: sizes id; Type: DEFAULT; Schema: public; Owner: -
+=======
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY sizes ALTER COLUMN id SET DEFAULT nextval('sizes_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
+-- Name: socks id; Type: DEFAULT; Schema: public; Owner: -
+=======
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY socks ALTER COLUMN id SET DEFAULT nextval('socks_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
+-- Name: styles id; Type: DEFAULT; Schema: public; Owner: -
+=======
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY styles ALTER COLUMN id SET DEFAULT nextval('styles_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY ar_internal_metadata
@@ -383,6 +412,9 @@ ALTER TABLE ONLY ar_internal_metadata
 
 
 --
+<<<<<<< HEAD
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: carts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -392,6 +424,7 @@ ALTER TABLE ONLY carts
 
 --
 -- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY categories
@@ -399,7 +432,11 @@ ALTER TABLE ONLY categories
 
 
 --
+<<<<<<< HEAD
+-- Name: colors colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY colors
@@ -407,6 +444,9 @@ ALTER TABLE ONLY colors
 
 
 --
+<<<<<<< HEAD
+-- Name: refile_attachments refile_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: line_items_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -416,6 +456,7 @@ ALTER TABLE ONLY line_items
 
 --
 -- Name: refile_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY refile_attachments
@@ -423,7 +464,7 @@ ALTER TABLE ONLY refile_attachments
 
 
 --
--- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY schema_migrations
@@ -431,7 +472,11 @@ ALTER TABLE ONLY schema_migrations
 
 
 --
+<<<<<<< HEAD
+-- Name: sizes sizes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: sizes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY sizes
@@ -439,7 +484,11 @@ ALTER TABLE ONLY sizes
 
 
 --
+<<<<<<< HEAD
+-- Name: socks socks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: socks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY socks
@@ -447,7 +496,11 @@ ALTER TABLE ONLY socks
 
 
 --
+<<<<<<< HEAD
+-- Name: styles styles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: styles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY styles
@@ -511,7 +564,7 @@ CREATE INDEX index_socks_on_style_id ON socks USING btree (style_id);
 
 
 --
--- Name: fk_rails_278af9e628; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: socks fk_rails_278af9e628; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY socks
@@ -519,6 +572,9 @@ ALTER TABLE ONLY socks
 
 
 --
+<<<<<<< HEAD
+-- Name: sizes fk_rails_b3883bf42b; Type: FK CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: fk_rails_a1e35bcaf6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -528,6 +584,7 @@ ALTER TABLE ONLY line_items
 
 --
 -- Name: fk_rails_b3883bf42b; Type: FK CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY sizes
@@ -535,6 +592,9 @@ ALTER TABLE ONLY sizes
 
 
 --
+<<<<<<< HEAD
+-- Name: socks fk_rails_e780b5db3f; Type: FK CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: fk_rails_e0a1b303e5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -544,6 +604,7 @@ ALTER TABLE ONLY carts
 
 --
 -- Name: fk_rails_e780b5db3f; Type: FK CONSTRAINT; Schema: public; Owner: -
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 --
 
 ALTER TABLE ONLY socks
@@ -551,7 +612,7 @@ ALTER TABLE ONLY socks
 
 
 --
--- Name: fk_rails_ee98d57c2f; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: socks fk_rails_ee98d57c2f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY socks
@@ -564,6 +625,10 @@ ALTER TABLE ONLY socks
 
 SET search_path TO "$user", public;
 
+<<<<<<< HEAD
+INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613'), ('20161115195615'), ('20161115200321');
+=======
 INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613'), ('20161115195615'), ('20161115200321'), ('20161115202523'), ('20161115203107'), ('20161115203956');
+>>>>>>> 20340cbc4fb3b2794a22998fb9d6d3bb11000559
 
 
