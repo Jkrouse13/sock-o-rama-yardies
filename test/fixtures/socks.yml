@@ -3,7 +3,7 @@
 one:
   name: MyString
   color: one
-  stlye: one
+  style: one
   price: 1
   category: one
   description: MyString
@@ -13,7 +13,7 @@ one:
 two:
   name: MyString
   color: two
-  stlye: two
+  style: two
   price: 1
   category: two
   description: MyString
