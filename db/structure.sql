@@ -149,6 +149,8 @@ CREATE TABLE schema_migrations (
 
 
 --
+<<<<<<< HEAD
+=======
 -- Name: socks; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -187,6 +189,7 @@ ALTER SEQUENCE socks_id_seq OWNED BY socks.id;
 
 
 --
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 -- Name: styles; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -218,27 +221,42 @@ ALTER SEQUENCE styles_id_seq OWNED BY styles.id;
 
 
 --
+<<<<<<< HEAD
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: -
+=======
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 --
 
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
+-- Name: colors id; Type: DEFAULT; Schema: public; Owner: -
+=======
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 --
 
 ALTER TABLE ONLY colors ALTER COLUMN id SET DEFAULT nextval('colors_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
+-- Name: refile_attachments id; Type: DEFAULT; Schema: public; Owner: -
+=======
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 --
 
 ALTER TABLE ONLY refile_attachments ALTER COLUMN id SET DEFAULT nextval('refile_attachments_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
+-- Name: styles id; Type: DEFAULT; Schema: public; Owner: -
+=======
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -247,13 +265,18 @@ ALTER TABLE ONLY socks ALTER COLUMN id SET DEFAULT nextval('socks_id_seq'::regcl
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 --
 
 ALTER TABLE ONLY styles ALTER COLUMN id SET DEFAULT nextval('styles_id_seq'::regclass);
 
 
 --
+<<<<<<< HEAD
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 --
 
 ALTER TABLE ONLY ar_internal_metadata
@@ -261,7 +284,11 @@ ALTER TABLE ONLY ar_internal_metadata
 
 
 --
+<<<<<<< HEAD
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 --
 
 ALTER TABLE ONLY categories
@@ -269,7 +296,11 @@ ALTER TABLE ONLY categories
 
 
 --
+<<<<<<< HEAD
+-- Name: colors colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 --
 
 ALTER TABLE ONLY colors
@@ -277,7 +308,11 @@ ALTER TABLE ONLY colors
 
 
 --
+<<<<<<< HEAD
+-- Name: refile_attachments refile_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: refile_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 --
 
 ALTER TABLE ONLY refile_attachments
@@ -293,6 +328,9 @@ ALTER TABLE ONLY schema_migrations
 
 
 --
+<<<<<<< HEAD
+-- Name: styles styles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+=======
 -- Name: socks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -302,6 +340,7 @@ ALTER TABLE ONLY socks
 
 --
 -- Name: styles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 --
 
 ALTER TABLE ONLY styles
@@ -373,6 +412,10 @@ ALTER TABLE ONLY socks
 
 SET search_path TO "$user", public;
 
+<<<<<<< HEAD
+INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613');
+=======
 INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613'), ('20161115195615');
+>>>>>>> e4c8b28f9cf6d592afab3fb227dc23c073c84863
 
 
