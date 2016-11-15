@@ -20,3 +20,4 @@
 /public/webpack
 npm-debug.log
 yarn-error.log
+db/structure.sql
