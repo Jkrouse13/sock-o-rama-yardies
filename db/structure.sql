@@ -150,6 +150,76 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: sizes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sizes (
+    id integer NOT NULL,
+    sock_id integer,
+    stock_quantitiy integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sizes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sizes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sizes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sizes_id_seq OWNED BY sizes.id;
+
+
+--
+-- Name: socks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE socks (
+    id integer NOT NULL,
+    name character varying,
+    color_id integer,
+    style_id integer,
+    price integer,
+    category_id integer,
+    description character varying,
+    image character varying,
+    featured boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: socks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE socks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: socks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE socks_id_seq OWNED BY socks.id;
+
+
+--
 -- Name: styles; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -202,6 +272,20 @@ ALTER TABLE ONLY refile_attachments ALTER COLUMN id SET DEFAULT nextval('refile_
 
 
 --
+-- Name: sizes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sizes ALTER COLUMN id SET DEFAULT nextval('sizes_id_seq'::regclass);
+
+
+--
+-- Name: socks id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY socks ALTER COLUMN id SET DEFAULT nextval('socks_id_seq'::regclass);
+
+
+--
 -- Name: styles id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -249,6 +333,22 @@ ALTER TABLE ONLY schema_migrations
 
 
 --
+-- Name: sizes sizes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sizes
+    ADD CONSTRAINT sizes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: socks socks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY socks
+    ADD CONSTRAINT socks_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: styles styles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -271,11 +371,71 @@ CREATE INDEX index_refile_attachments_on_oid ON refile_attachments USING btree (
 
 
 --
+-- Name: index_sizes_on_sock_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sizes_on_sock_id ON sizes USING btree (sock_id);
+
+
+--
+-- Name: index_socks_on_category_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_socks_on_category_id ON socks USING btree (category_id);
+
+
+--
+-- Name: index_socks_on_color_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_socks_on_color_id ON socks USING btree (color_id);
+
+
+--
+-- Name: index_socks_on_style_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_socks_on_style_id ON socks USING btree (style_id);
+
+
+--
+-- Name: socks fk_rails_278af9e628; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY socks
+    ADD CONSTRAINT fk_rails_278af9e628 FOREIGN KEY (color_id) REFERENCES colors(id);
+
+
+--
+-- Name: sizes fk_rails_b3883bf42b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sizes
+    ADD CONSTRAINT fk_rails_b3883bf42b FOREIGN KEY (sock_id) REFERENCES socks(id);
+
+
+--
+-- Name: socks fk_rails_e780b5db3f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY socks
+    ADD CONSTRAINT fk_rails_e780b5db3f FOREIGN KEY (category_id) REFERENCES categories(id);
+
+
+--
+-- Name: socks fk_rails_ee98d57c2f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY socks
+    ADD CONSTRAINT fk_rails_ee98d57c2f FOREIGN KEY (style_id) REFERENCES styles(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613');
+INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613'), ('20161115195615'), ('20161115200321');
 
 

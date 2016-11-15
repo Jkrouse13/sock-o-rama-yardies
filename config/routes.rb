@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :socks
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
     get 'welcome/index'
     get '/sockdetail' => 'welcome#sockDetail'
