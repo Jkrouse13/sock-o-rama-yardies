@@ -12,3 +12,21 @@ Sock.create(
   name: "The Sock Monkey",
   price: 2700
 )
+Sock.create(
+  style: Style.find_or_initialize_by(name: "crew"),
+  color: Color.find_or_initialize_by(name: "grey"),
+  name: "The Sock Gorilla",
+  price: 2700
+)
+Sock.create(
+  style: Style.find_or_initialize_by(name: "crew"),
+  color: Color.find_or_initialize_by(name: "grey"),
+  name: "The Sock Alligator",
+  price: 8800
+)
+Sock.create(
+  style: Style.find_or_initialize_by(name: "crew"),
+  color: Color.find_or_initialize_by(name: "grey"),
+  name: "The Sock Giraffe",
+  price: 4500
+)

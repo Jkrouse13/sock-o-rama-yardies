@@ -1,6 +1,7 @@
 import React from 'react'
 import { sharedState, attachSharedState, detachSharedState } from 'react-helpers/dist/sharedState'
 import classAutoBind from 'react-helpers/dist/classAutoBind'
+import Sock from './Sock'
 
 class Socks extends React.Component {
     constructor(props) {
@@ -38,12 +39,14 @@ class Socks extends React.Component {
 
     render() {
         var socks = this.state.socks.map(function(sock,i) {
-            return <p key={i}>{sock.name} {sock.style.name}</p>
+            return <Sock sock={sock} key={i}/>
         })
 
         console.log('render ', this.state.socks)
-        return <div>Socks
-            {socks}
+        return <div className="container">
+        <div className="row">
+         {socks}
+         </div>
         </div>
     }
 }
