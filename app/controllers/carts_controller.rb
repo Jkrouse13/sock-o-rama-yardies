@@ -9,16 +9,16 @@ class CartsController < ApplicationController
 
   # def new #has template, displays form
   # end
-  #
+  
   # def create #saves and redirects, saves new record
   # end
-  #
+
   # def edit #has template, diplays form of exsisting record
   # end
-  #
+
   # def update #saves and redirects, saves changes
   # end
-  #
+
   def destroy  #destorys and redirects
     @cart=Cart.find_by(token: params[:token])
     @cart.line_items.destroy!

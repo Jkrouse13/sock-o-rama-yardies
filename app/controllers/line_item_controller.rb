@@ -20,16 +20,16 @@ class LineItemController < ApplicationController
     render json: @line_item
   end
 
-  def edit #has template, diplays form of exsisting record
+  # def edit #has template, diplays form of exsisting record
+  # end
+
+  def update #saves and redirects, saves changes
     @line_item = LineItem.find(params[:id])
     @line_item.quanitity = params[:quantitiy]
     @line_item.size_id = params[:size_id]
     @line_item.save
     render json: @line_item
   end
-
-  # def update #saves and redirects, saves changes
-  # end
 
   def destroy  #destorys and redirects
     @line_item = LineItem.find(params[:id])
