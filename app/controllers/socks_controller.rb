@@ -6,7 +6,7 @@ class SocksController < ApplicationController
   end
 
   def show #has template, renders view
-    @sock = Sock.find(params :id)
+    @sock = Sock.find(params[:id])
     render json: @sock
   end
 
