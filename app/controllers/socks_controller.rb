@@ -1,7 +1,6 @@
 class SocksController < ApplicationController
   def index #has template renders view
     @socks = Sock.all
-    #split and stuff
     render json: @socks
   end
 
