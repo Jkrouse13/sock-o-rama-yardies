@@ -1,3 +1,3 @@
 class Cart < ApplicationRecord
-  belongs_to :line_item
+  has_many :line_items
 end
