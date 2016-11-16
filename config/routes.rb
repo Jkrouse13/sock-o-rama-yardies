@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :carts
   resources :socks
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+    get '/socks/index' => 'socks#index'
     get 'welcome/index'
     get '/sockdetail' => 'welcome#sockDetail'
     get '/cart' => 'welcome#cart'
