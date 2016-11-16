@@ -3,9 +3,8 @@ class CartsController < ApplicationController
   # end
 
   def show #has template, renders view
-    @cart= cart.find_by(params[:token])
-    @cart.line_items
-    render json: @cart
+    @cart= Cart.find_by(params[:token])
+    render json: @cart.line_items
   end
 
   # def new #has template, displays form
@@ -20,7 +19,10 @@ class CartsController < ApplicationController
   # def update #saves and redirects, saves changes
   # end
   #
-  # def destroy  #destorys and redirects
-  # end
+  def destroy  #destorys and redirects
+    @cart=Cart.find_by(token: params[:token])
+    @cart.line_items.destroy!
+    render json:  {success: 'Cart was successfully emptied.' }
+  end
 
 end
