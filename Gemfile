@@ -36,6 +36,7 @@ gem "refile", require: "refile/rails", github: 'refile/refile'
 gem "refile-mini_magick"
 gem 'refile-postgres', '~> 1.4'
 gem 'rails_admin', '~> 1.0'
+gem 'google_drive'
 
 
 group :development, :test do
