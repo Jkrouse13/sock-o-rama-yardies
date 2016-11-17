@@ -11,7 +11,6 @@ class Sock extends React.Component {
         this.state = {
             // sharedState: sharedState(),
             modalIsOpen: false,
-            token: '',
             sock_id: '',
             quantity: '',
             size_id: ''
@@ -45,7 +44,7 @@ class Sock extends React.Component {
         fetch('/add_cart_item', {
             method: 'POST',
             body: JSON.stringify({
-                token: 'ZQRs2UcESUpCBBKH7niBN2qx',
+                token: sharedState().cartToken,
                 // sock_id: this.state.sock_id,
                 // sock_id: 1,
                 item_quantity: this.state.quantity,
