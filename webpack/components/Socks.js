@@ -39,10 +39,11 @@ class Socks extends React.Component {
 
     render() {
         var socks = this.state.socks.map(function(sock,i) {
-            return <Sock sock={sock} key={i}/>
+            return <Sock sock={sock} key={i} />
         })
 
-        console.log('render ', this.state.socks)
+        console.log('render', this.state.socks)
+
         return <div className="container">
         <div className="row">
          {socks}
