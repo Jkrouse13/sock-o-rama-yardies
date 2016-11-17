@@ -7,4 +7,5 @@ class Sock < ApplicationRecord
   # attachment :image
 
   default_scope { order(name: :desc) }
+
 end
