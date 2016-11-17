@@ -5,36 +5,85 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-LineItem.create!(
-  cart: Cart.create!,
-  item_quantity: 5,
-  size:Size.create!(
-  arrb: "Sm",
-  stock_quantitiy: 22,
-  sock: Sock.create(
-    style: Style.find_or_initialize_by(name: "crew"),
-    color: Color.find_or_initialize_by(name: "grey"),
-    name: "The Sock Monkey",
-    price: 2700
+require "google_drive"
+session = GoogleDrive::Session.from_config("config.json")
+# session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['google_secret']))
+# Sock.create(
+#   style: Style.find_or_initialize_by(name: "crew"),
+#   color: Color.find_or_initialize_by(name: "grey"),
+#   name: "The Sock Monkey",
+#   price: 2700
+# )
+blend = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0").worksheets[0]
+(2..blend.num_rows).each do |row|
+  blend[row,5].split(",").collect(&:strip).each do |abr|
+    Size.create!(
+    arrb: abr.match(/[A-Z]/i)[0],
+    stock_quantitiy: abr.match(/\d+/)[0].to_i,
+    sock: Sock.create!(
+      name: blend[row, 1],
+      color: Color.where(name: blend[row, 2]).first_or_create,
+      style: Style.where(name: blend[row, 3]).first_or_create,
+      price: blend[row, 6].gsub(/\D+/, "").to_i * 100,
+      material: blend[row, 8],
+      category: Category.where(name: "Blended").first_or_create
+      # remote_image_url: blend[row, 7]
+      )
     )
-  )
-)
-Sock.create(
-  style: Style.find_or_initialize_by(name: "crew"),
-  color: Color.find_or_initialize_by(name: "grey"),
-  name: "The Sock Gorilla",
-  price: 2700
-)
-Sock.create(
-  style: Style.find_or_initialize_by(name: "crew"),
-  color: Color.find_or_initialize_by(name: "grey"),
-  name: "The Sock Alligator",
-  price: 8800
-)
-Sock.create(
-  style: Style.find_or_initialize_by(name: "crew"),
-  color: Color.find_or_initialize_by(name: "grey"),
-  name: "The Sock Giraffe",
-  price: 4500
-)
+  end
+end
+llama = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0").worksheets[1]
+(2..llama.num_rows).each do |row|
+  blend[row,5].split(",").collect(&:strip).each do |abr|
+    Size.create!(
+    arrb: abr.match(/[A-Z]/i)[0],
+    stock_quantitiy: abr.match(/\d+/)[0].to_i,
+    sock: Sock.create!(
+      name: llama[row, 1],
+      color: Color.where(name: llama[row, 2]).first_or_create,
+      style: Style.where(name: llama[row, 3]).first_or_create,
+      price: llama[row, 6].gsub(/\D+/, "").to_i * 100,
+      material: llama[row, 8],
+      category: Category.where(name: "Llama").first_or_create,
+      description: llama[row, 9]
+      # remote_image_url: llama[row, 7]
+      )
+    )
+  end
+end
+alpaca = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0").worksheets[2]
+(2..alpaca.num_rows).each do |row|
+  blend[row,5].split(",").collect(&:strip).each do |abr|
+    Size.create!(
+    arrb: abr.match(/[A-Z]/i)[0],
+    stock_quantitiy: abr.match(/\d+/)[0].to_i,
+    sock: Sock.create!(
+      name: alpaca[row, 1],
+      color: Color.where(name: alpaca[row, 2]).first_or_create,
+      style: Style.where(name: alpaca[row, 3]).first_or_create,
+      price: blend[row, 6].gsub(/\D+/, "").to_i * 100,
+      material: alpaca[row, 8],
+      category: Category.where(name: "Alpaca").first_or_create
+      # remote_image_url: alpaca[row, 7]
+      )
+    )
+  end
+end
+wool = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0").worksheets[3]
+(2..blend.num_rows).each do |row|
+  wool[row,5].split(",").collect(&:strip).each do |abr|
+    Size.create!(
+    arrb: abr.match(/[A-Z]/i)[0],
+    stock_quantitiy: abr.match(/\d+/)[0].to_i,
+    sock: Sock.create!(
+      name: wool[row, 1],
+      color: Color.where(name: wool[row, 2]).first_or_create,
+      style: Style.where(name: wool[row, 3]).first_or_create,
+      price: wool[row, 6].gsub(/\D+/, "").to_i * 100,
+      material: wool[row, 8],
+      category: Category.where(name: "Wool").first_or_create
+      # remote_image_url: wool[row, 7]
+      )
+    )
+  end
+end
