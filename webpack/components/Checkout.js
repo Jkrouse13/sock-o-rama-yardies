@@ -19,7 +19,7 @@ class Checkout extends React.Component {
         detachSharedState(this)
     }
     render() {
-        return <div className="container">Checkout
+        return <div className="container headerMargin">Checkout
         <div className="panel">
             <div className="panel-heading">
                 Contact Information
@@ -68,7 +68,7 @@ class Checkout extends React.Component {
 
                      </div>
                      <div className="col-sm-4">
-                     
+
                          <div className="form-group">
                              <label for="price">Price</label>
                              <div className="input-group">

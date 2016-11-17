@@ -1,6 +1,7 @@
 import React from 'react'
 import { sharedState, attachSharedState, detachSharedState } from 'react-helpers/dist/sharedState'
 import classAutoBind from 'react-helpers/dist/classAutoBind'
+import { Link } from 'react-router'
 import Item from './Item'
 
 class Cart extends React.Component {
@@ -66,7 +67,7 @@ class Cart extends React.Component {
         console.log('render stuff', this.state.cart)
 
         var items = this.state.line_items.map(function(item,i) {
-            return <Item cart={item} key={i} />
+            return <Item item={item} key={i} />
         })
 
 
@@ -122,9 +123,8 @@ class Cart extends React.Component {
                             </div>
                             <div className="row text-center">
                                 <div className="col-xs-12">
-                                    <button type="button" className="btn btn-success btn-block">
-                                        Checkout
-                                    </button>
+                                    <Link to="/checkout" className="btn btn-success btn-block">Checkout</Link>
+
                                 </div>
                             </div>
                         </div>
