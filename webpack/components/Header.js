@@ -32,16 +32,16 @@ class Header extends React.Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="#">Sock-O-Rama</a>
+              <Link to="/" className="navbar-brand">Sock-O-Rama</Link>
             </div>
             <div id="navbar" className="navbar-collapse collapse">
               <ul className="nav navbar-nav">
-                <li className="active"><a href="#">Home</a></li>
+                <li className="active"><Link to="/">Home</Link></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                <li><Link to="/cart">Cart</Link></li>
+                <li><Link to="/cart" className="btn btn-default"><span className="glyphicon glyphicon-shopping-cart"></span> Cart {this.state.itemsInCart}</Link></li>
               </ul>
             </div>
           </div>
