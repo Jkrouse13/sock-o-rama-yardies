@@ -1,7 +1,7 @@
 class SocksController < ApplicationController
   def index #has template renders view
     @socks = Sock.all
-    render json: @socks
+    render json: @socks 
   end
 
   def show #has template, renders view
