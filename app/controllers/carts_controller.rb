@@ -16,8 +16,8 @@ class CartsController < ApplicationController
   # def edit #has template, diplays form of exsisting record
   # end
 
-  # def update #saves and redirects, saves changes
-  # end
+  def update #saves and redirects, saves changes
+  end
 
   def destroy  #destorys and redirects
     @cart=Cart.find_by(token: params[:token])
