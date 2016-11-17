@@ -3,7 +3,7 @@ class CartsController < ApplicationController
   # end
 
   def show #has template, renders view
-    @cart= Cart.find_by(params[:token])
+    @cart= Cart.find_by(token: params[:token])
     render json: @cart.line_items, include: "size.sock"
   end
 
@@ -16,8 +16,8 @@ class CartsController < ApplicationController
   # def edit #has template, diplays form of exsisting record
   # end
 
-  # def update #saves and redirects, saves changes
-  # end
+  def update #saves and redirects, saves changes
+  end
 
   def destroy  #destorys and redirects
     @cart=Cart.find_by(token: params[:token])
