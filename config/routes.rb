@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     get   '/mockcart' => 'welcome#cart'
 
     # routes for carts and line_items
-    get   '/sock_detail/[:id]' => 'socks#show'
-    post   '/add_cart_item' => 'line_item#create'
-    get  '/cart' => 'carts#show'
-    get   '/update_cart_item' => 'line_items#update'
+    get     '/sock_detail/[:id]' => 'socks#show'
+    post    '/add_cart_item' => 'line_item#create'
+    get     '/cart' => 'carts#show'
+    patch   '/update_cart_item' => 'line_items#update'
     #static routes for React
     get 'static/index'
     root 'static#index'
