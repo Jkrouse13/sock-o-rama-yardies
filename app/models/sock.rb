@@ -5,4 +5,5 @@ class Sock < ApplicationRecord
   has_many :sizes
 
   default_scope { order(name: :desc) }
+
 end

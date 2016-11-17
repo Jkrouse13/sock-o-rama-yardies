@@ -9,7 +9,7 @@ class CartsController < ApplicationController
 
   # def new #has template, displays form
   # end
-  
+
   # def create #saves and redirects, saves new record
   # end
 
