@@ -51,7 +51,7 @@ llama = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0
     )
   end
 end
-alpaca = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0").worksheets[0]
+alpaca = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0").worksheets[2]
 (2..alpaca.num_rows).each do |row|
   blend[row,5].split(",").collect(&:strip).each do |abr|
     Size.create!(
@@ -69,7 +69,7 @@ alpaca = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ
     )
   end
 end
-wool = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0").worksheets[0]
+wool = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0").worksheets[3]
 (2..blend.num_rows).each do |row|
   wool[row,5].split(",").collect(&:strip).each do |abr|
     Size.create!(
