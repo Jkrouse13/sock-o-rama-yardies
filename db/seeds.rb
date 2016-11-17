@@ -20,8 +20,8 @@ blend = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0
       style: Style.where(name: blend[row, 3]).first_or_create,
       price: blend[row, 6].gsub(/\D+/, "").to_i * 100,
       material: blend[row, 8],
-      category: Category.where(name: "Blended").first_or_create
-      # remote_image_url: blend[row, 7]
+      category: Category.where(name: "Blended").first_or_create,
+      remote_image_url: blend[row, 7]
       )
     )
   end
@@ -39,8 +39,8 @@ llama = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0
       price: llama[row, 6].gsub(/\D+/, "").to_i * 100,
       material: llama[row, 8],
       category: Category.where(name: "Llama").first_or_create,
-      description: llama[row, 9]
-      # remote_image_url: llama[row, 7]
+      description: llama[row, 9],
+      remote_image_url: llama[row, 7]
       )
     )
   end
@@ -57,8 +57,8 @@ alpaca = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ
       style: Style.where(name: alpaca[row, 3]).first_or_create,
       price: blend[row, 6].gsub(/\D+/, "").to_i * 100,
       material: alpaca[row, 8],
-      category: Category.where(name: "Alpaca").first_or_create
-      # remote_image_url: alpaca[row, 7]
+      category: Category.where(name: "Alpaca").first_or_create,
+      remote_image_url: alpaca[row, 7]
       )
     )
   end
@@ -75,8 +75,8 @@ wool = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0"
       style: Style.where(name: wool[row, 3]).first_or_create,
       price: wool[row, 6].gsub(/\D+/, "").to_i * 100,
       material: wool[row, 8],
-      category: Category.where(name: "Wool").first_or_create
-      # remote_image_url: wool[row, 7]
+      category: Category.where(name: "Wool").first_or_create,
+      remote_image_url: wool[row, 7]
       )
     )
   end
