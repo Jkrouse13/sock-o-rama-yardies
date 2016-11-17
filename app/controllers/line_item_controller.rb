@@ -11,7 +11,7 @@ class LineItemController < ApplicationController
   def create
     if params[:token]
       @line_item = LineItem.new(
-      cart: Cart.where.(token: params[:token]).first_or_initialize,
+      cart: Cart.where(token: params[:token]).first_or_initialize,
       size_id:    params[:size_id],
       item_quantity:  params[:item_quantity],
       # sock_id:    params[:sock_id]

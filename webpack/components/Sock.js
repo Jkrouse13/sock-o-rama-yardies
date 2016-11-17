@@ -13,7 +13,7 @@ class Sock extends React.Component {
             modalIsOpen: false,
             token: '',
             sock_id: '',
-            quantity: 0,
+            quantity: '',
             size_id: ''
         }
         // this.state = sharedState()
@@ -51,7 +51,10 @@ class Sock extends React.Component {
                 item_quantity: this.state.quantity,
                 // size_id: this.state.size_id,
                 size_id: 1,
-            })
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
         .then(response => response.json())
         .then(this.handleAddToCart)
@@ -69,10 +72,11 @@ class Sock extends React.Component {
         var items = sharedState().itemsInCart
         items++
         console.log(items)
-        console.log(response)
+        console.log(response.line_item.cart.token)
 
         sharedState({
-            itemsInCart: items
+            itemsInCart: items,
+            cartToken: response.line_item.cart.token
         })
     }
 
@@ -113,7 +117,7 @@ class Sock extends React.Component {
                                  <h2>Description</h2>
                                  <p>{this.props.sock.description}</p>
                                  <h2>Materials</h2>
-                                 <p>Llama</p>
+                                 <p>{this.props.sock.material}</p>
                                </div>
                                <div className="col-md-6">
                                  <h3>Price: {accounting.format(this.props.sock.price/100)}</h3>
@@ -127,20 +131,12 @@ class Sock extends React.Component {
                                    </div>
                                    <div className="form-group">
                                          <label htmlFor="quantitiy">Quantity</label>
-                                        <input id="quantitiy" type="text" value={this.state.quantity} onChange={this.handleQuantityChange} />
+                                        <input className="form-control" id="quantitiy" type="text" value={this.state.quantity} onChange={this.handleQuantityChange} />
                                    </div>
-                                   <div className="form-group">
-                                         <label htmlFor="color">Color</label>
-                                         <select className="form-control" id="color">
-                                           <option value="charcoal">Charcoal</option>
-                                         </select>
-                                   </div>
-                                   <div className="form-group">
-                                       <label htmlFor="style">Style</label>
-                                         <select id="style" className="form-control">
-                                           <option value="knee">Knee</option>
-                                         </select>
-                                   </div>
+                                   <h2>Color</h2>
+                                   <p>{this.props.sock.color.name}</p>
+                                   <h2>Style</h2>
+                                   <p>{this.props.sock.style.name}</p>
                                </div>
                              </div>
                            </div>
