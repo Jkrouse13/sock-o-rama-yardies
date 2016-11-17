@@ -1,6 +1,8 @@
+
 Rails.application.routes.draw do
   resources :carts
   resources :socks
+  resources :charges
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
     get   'welcome/index'
     get   '/sockdetail' => 'welcome#sockDetail'
@@ -16,4 +18,5 @@ Rails.application.routes.draw do
     root 'static#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # get '/:react' => 'welcome/index'
 end
