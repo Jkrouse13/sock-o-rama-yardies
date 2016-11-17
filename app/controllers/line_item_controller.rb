@@ -16,6 +16,7 @@ class LineItemController < ApplicationController
       item_quantity:  params[:item_quantity],
       # sock_id:    params[:sock_id]
       )
+
       { success: 'Item was successfully added to cart.' }
       @line_item.save
 
