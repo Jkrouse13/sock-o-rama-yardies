@@ -24,36 +24,12 @@ class Cart extends React.Component {
     }
 
     getCart() {
-        fetch('/cart?' + sharedState().cartToken, {
+        fetch('/cart?token=' + sharedState().cartToken, {
             method: 'GET'
         })
         .then(response => response.json())
         .then(this.handleCart)
 
-        // var response =
-        //     {
-        //     cart: {
-        //         line_items: [{
-        //             name: 'sock',
-        //             price: 2700
-        //         },
-        //         {
-        //             name: 'sock',
-        //             price: 2700
-        //         },
-        //         {
-        //             name: 'sock',
-        //             price: 2700
-        //         },
-        //         {
-        //             name: 'sock',
-        //             price: 2700
-        //         }]
-        //     }
-        //     }
-        //
-        //
-        // this.handleCart(response)
     }
 
     handleCart(response) {
@@ -118,7 +94,7 @@ class Cart extends React.Component {
                             <div className="row text-right">
                                 <div className="col-xs-12">
                                     <h4 className="text-right">Total
-                                        <strong>$50.00</strong></h4>
+                                        <strong> $50.00</strong></h4>
                                 </div>
                             </div>
                             <div className="row text-center">

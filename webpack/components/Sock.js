@@ -8,12 +8,13 @@ class Sock extends React.Component {
     constructor(props) {
         super(props)
         classAutoBind(this)
+        console.log(props.sock.sizes[0].id)
         this.state = {
             // sharedState: sharedState(),
             modalIsOpen: false,
-            sock_id: '',
+            sock_id: props.sock.id,
             quantity: '',
-            size_id: ''
+            size_id: props.sock.sizes[0].id
         }
         // this.state = sharedState()
     }
@@ -45,11 +46,9 @@ class Sock extends React.Component {
             method: 'POST',
             body: JSON.stringify({
                 token: sharedState().cartToken,
-                // sock_id: this.state.sock_id,
-                // sock_id: 1,
+                sock_id: this.state.sock_id,
                 item_quantity: this.state.quantity,
-                // size_id: this.state.size_id,
-                size_id: 1,
+                size_id: this.state.size_id,
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -67,11 +66,8 @@ class Sock extends React.Component {
 
     handleAddToCart(response) {
         this.closeModal()
-        console.log(response)
         var items = sharedState().itemsInCart
         items++
-        console.log(items)
-        console.log(response.line_item.cart.token)
 
         sharedState({
             itemsInCart: items,
@@ -85,16 +81,24 @@ class Sock extends React.Component {
         })
     }
 
-    render() {
-        return <div className="col-sm-6 col-md-4">
+    handleSizeChange(event) {
+        console.log(event.target.options[event.target.selectedIndex].value)
+        this.setState({size_id: event.target.options[event.target.selectedIndex].value});
+    }
 
+    render() {
+        var sizes = this.props.sock.sizes.map(function(size, i) {
+            return <option value={size.id} key={i}>{size.arrb}</option>
+        })
+
+        return <div className="col-sm-6 col-md-4">
               <div className="thumbnail">
                 {/* <img src={this.props.sock.image} alt="..."   /> */}
                 {/* // TODO: Remove hardcoded image */}
                  <img className="img-responsive" src="http://www.llamafibercoop.com/Socks%20no%20pricing.jpg" width="400" alt="sock image" />
                 <div className="caption">
                   <h3>{this.props.sock.name}</h3>
-                  <p>{this.props.sock.description}</p>
+                  {/* <p>{this.props.sock.description}</p> */}
                   <p>{accounting.format(this.props.sock.price/100)}</p>
                   <button className="btn btn-primary" onClick={this.openModal}>View Details</button>
                  <Modal
@@ -113,8 +117,6 @@ class Sock extends React.Component {
                              <div className="row">
                                <div className="col-md-6">
                                  <img className="img-responsive" src="http://www.llamafibercoop.com/Socks%20no%20pricing.jpg" width="400" alt="sock image" />
-                                 <h2>Description</h2>
-                                 <p>{this.props.sock.description}</p>
                                  <h2>Materials</h2>
                                  <p>{this.props.sock.material}</p>
                                </div>
@@ -122,10 +124,8 @@ class Sock extends React.Component {
                                  <h3>Price: {accounting.format(this.props.sock.price/100)}</h3>
                                    <div className="form-group">
                                          <label htmlFor="size">Size</label>
-                                         <select id ="size" className="form-control">
-                                           <option value="sm">Small</option>
-                                           <option value="md">Medium</option>
-                                           <option value="lg">Large</option>
+                                         <select id ="size" className="form-control" value={this.state.size_id} onChange={this.handleSizeChange}>
+                                         {sizes}
                                          </select>
                                    </div>
                                    <div className="form-group">
