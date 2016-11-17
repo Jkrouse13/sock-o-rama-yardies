@@ -44,17 +44,13 @@ class Sock extends React.Component {
     addToCart() {
         fetch('/add_cart_item', {
             method: 'POST',
-            // body: JSON.stringify({
-            //     token: this.state.token,
-            //     sock_id: this.state.sock_id,
-            //     quantity: this.state.quantity,
-            //     size_id: this.state.size_id,
-            // })
             body: JSON.stringify({
-                token: this.state.token,
-                sock_id: this.state.sock_id,
+                // token: this.state.token,
+                // sock_id: this.state.sock_id,
+                sock_id: 1,
                 quantity: this.state.quantity,
-                size_id: this.state.size_id,
+                // size_id: this.state.size_id,
+                size_id: 1,
             })
         })
         .then(response => response.json())
@@ -76,6 +72,12 @@ class Sock extends React.Component {
 
         sharedState({
             itemsInCart: items
+        })
+    }
+
+    handleQuantityChange(e) {
+        this.setState({
+            quantity: e.target.value
         })
     }
 
@@ -113,7 +115,7 @@ class Sock extends React.Component {
                                  <p>Llama</p>
                                </div>
                                <div className="col-md-6">
-                                 <h3>Price: {this.props.sock.price}</h3>
+                                 <h3>Price: {accounting.format(this.props.sock.price/100)}</h3>
                                    <div className="form-group">
                                          <label htmlFor="size">Size</label>
                                          <select id ="size" className="form-control">
@@ -121,6 +123,10 @@ class Sock extends React.Component {
                                            <option value="md">Medium</option>
                                            <option value="lg">Large</option>
                                          </select>
+                                   </div>
+                                   <div className="form-group">
+                                         <label htmlFor="quantitiy">Quantity</label>
+                                        <input id="quantitiy" type="text" value={this.state.quantity} onChange={this.handleQuantityChange} />
                                    </div>
                                    <div className="form-group">
                                          <label htmlFor="color">Color</label>
