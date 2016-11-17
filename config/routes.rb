@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     # routes for carts and line_items
     get   '/sock_detail/[:id]' => 'socks#show'
     post   '/add_cart_item' => 'line_item#create'
-    get  '/carts' => 'carts#show'
+    get  '/cart' => 'carts#show'
     get   '/update_cart_item' => 'line_items#update'
     #static routes for React
     get 'static/index'

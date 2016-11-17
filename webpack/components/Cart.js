@@ -23,42 +23,42 @@ class Cart extends React.Component {
     }
 
     getCart() {
-        // fetch('/carts', {
-        //     method: 'GET'
-        // })
-        // .then(response => response.json())
-        // .then(this.handleCart)
+        fetch('/cart?' + sharedState().cartToken, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(this.handleCart)
 
-        var response =
-            {
-            cart: {
-                line_items: [{
-                    name: 'sock',
-                    price: 2700
-                },
-                {
-                    name: 'sock',
-                    price: 2700
-                },
-                {
-                    name: 'sock',
-                    price: 2700
-                },
-                {
-                    name: 'sock',
-                    price: 2700
-                }]
-            }
-            }
-
-
-        this.handleCart(response)
+        // var response =
+        //     {
+        //     cart: {
+        //         line_items: [{
+        //             name: 'sock',
+        //             price: 2700
+        //         },
+        //         {
+        //             name: 'sock',
+        //             price: 2700
+        //         },
+        //         {
+        //             name: 'sock',
+        //             price: 2700
+        //         },
+        //         {
+        //             name: 'sock',
+        //             price: 2700
+        //         }]
+        //     }
+        //     }
+        //
+        //
+        // this.handleCart(response)
     }
 
     handleCart(response) {
         console.log('cart: ', response)
         sharedState({
-            line_items: response.cart.line_items
+            line_items: response.line_items
         })
     }
 
