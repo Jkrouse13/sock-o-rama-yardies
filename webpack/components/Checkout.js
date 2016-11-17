@@ -13,11 +13,24 @@ class Checkout extends React.Component {
     componentDidMount() {
         // attachSharedState(this, (state) => this.setState({sharedState: state}))
         attachSharedState(this)
+        Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
     }
 
     componentWillUnmount() {
         detachSharedState(this)
     }
+
+    handleSubmit(e) {
+        // Disable the submit button to prevent repeated clicks:
+        // $form.find('.submit').prop('disabled', true);
+
+        // Request a token from Stripe:
+        Stripe.card.createToken($form, stripeResponseHandler);
+
+        // Prevent the form from being submitted:
+        return false;
+    }
+
     render() {
         return <div className="container headerMargin">
         <h3>Checkout</h3>
@@ -159,76 +172,59 @@ class Checkout extends React.Component {
 
        <div className="row">
        <div className="col-sm-6">
-           <div className="form-group">
-               <label for="payment_information">Credit Card</label>
-               <select className="form-control" id="billing_country" name="billing_country">
-                    <option value="Visa">Visa</option>
-                   <option value="Mastercard">Mastercard</option>
-                   <option value="American_Express">American Express</option>
-                   <option value="Discover">Discover</option>
+       <form action="/your-charge-code" method="POST" id="payment-form">
+         <span className="payment-errors"></span>
 
-               </select>
-           </div>
+         <div className="form-group">
+           <label>
+             <span>Card Number</span>
+             <input type="text" size="20" data-stripe="number"/>
+           </label>
+         </div>
+
+         <div className="form-group">
+           <label>
+             <span>Expiration (MM/YY)</span>
+             <input type="text" size="2" data-stripe="exp_month" />
+           </label>
+           <span> / </span>
+           <input type="text" size="2" data-stripe="exp_year" />
+         </div>
+
+         <div className="form-group">
+           <label>
+             <span>CVC</span>
+             <input type="text" size="4" data-stripe="cvc" />
+           </label>
+         </div>
+
+         <div className="form-group">
+           <label>
+             <span>Billing Zip</span>
+             <input type="text" size="6" data-stripe="address_zip" />
+           </label>
+         </div>
+
+         <div className="row form-group well">
+             <div className="col-sm-6 col-sm-push-6 text-right">
+                 <div>
+                     <button className="btn btn-primary btn-lg" onSubmit={this.handleSubmit}>Send</button>
+                 </div>
+             </div>
+             <div className="col-sm-6 col-sm-pull-6">
+                 <div>
+                     <button className="btn btn-danger btn-lg">Cancel</button>
+                 </div>
+             </div>
+         </div>
+       </form>
        </div>
        </div>
-
-
    </div>
-<div className="panel">
-       <div className="row">
-           <div className="col-sm-8">
-
-               <div className="form-group">
-                   <label for="first_name">Card Number</label>
-                   <input type="text" id="card_number" name="card_number" className="form-control" placeholder="card number" />
-               </div>
-
-           </div>
-           <div className="col-sm-2">
-               <div className="form-group">
-                   <label for="email">CCV</label>
-                   <input type="text" id="ccv" name="ccv" placeholder="CCV"  maxlength="3" className="form-control" />
-
-               </div>
-
-           </div>
-
-       </div>
-       <div className="row">
-           <div className="col-sm-2">
-               <div className="form-group">
-                   <label>Expiration Date</label>
-                   <input type="text" id="exp_date" name="exp" placeholder="00/00"  maxlength="3" className="form-control" />
-
-               </div>
-
-           </div>
-
-       </div>
-
-</div>
 
 
         </div>
 
-        <div className="row form-group well">
-            <div className="col-sm-6 col-sm-push-6 text-right">
-                <div>
-                    <button className="btn btn-primary btn-lg">Send</button>
-                </div>
-            </div>
-            <div className="col-sm-6 col-sm-pull-6">
-                <div>
-                    <button className="btn btn-danger btn-lg">Cancel</button>
-                </div>
-            </div>
-        </div>
-
-        {/* <div className="form-group well text-right">
-
-            <button className="btn btn-default btn-sm">Cancel</button>
-            <button className="btn btn-success btn-lg">Send</button>
-        </div> */}
     </div>
 
 
@@ -236,8 +232,3 @@ class Checkout extends React.Component {
 }
 
 export default Checkout
-
-
-
-{/* <label className="sr-only" for="first_name">First Name</label> */}
-{/* <label className="sr-only" for="last_name">Last Name</label> */}
