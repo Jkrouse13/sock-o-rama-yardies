@@ -45,16 +45,16 @@ class Sock extends React.Component {
         fetch('/add_cart_item', {
             method: 'POST',
             body: JSON.stringify({
-                // token: this.state.token,
+                token: 'ZQRs2UcESUpCBBKH7niBN2qx',
                 // sock_id: this.state.sock_id,
-                sock_id: 1,
-                quantity: this.state.quantity,
+                // sock_id: 1,
+                item_quantity: this.state.quantity,
                 // size_id: this.state.size_id,
                 size_id: 1,
             })
         })
         .then(response => response.json())
-        .then(this.handleAddToCart())
+        .then(this.handleAddToCart)
 
         // var response = {
         //     success: true
@@ -69,6 +69,7 @@ class Sock extends React.Component {
         var items = sharedState().itemsInCart
         items++
         console.log(items)
+        console.log(response)
 
         sharedState({
             itemsInCart: items
