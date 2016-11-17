@@ -13,8 +13,8 @@ class LineItemController < ApplicationController
       @line_item = LineItem.new(
       cart: Cart.where.(token: params[:token]).first_or_initialize,
       size_id:    params[:size_id],
-      quantity:  params[:quantity],
-      sock_id:    params[:sock_id]
+      item_quantity:  params[:item_quantity],
+      # sock_id:    params[:sock_id]
       )
       { success: 'Item was successfully added to cart.' }
       @line_item.save
@@ -23,8 +23,8 @@ class LineItemController < ApplicationController
       @line_item = LineItem.new(
       cart: Cart.new,
       size_id:    params[:size_id],
-      quantity:  params[:quantity],
-      sock_id:    params[:sock_id]
+      item_quantity:  params[:item_quantity],
+      # sock_id:    params[:sock_id]
       )
       @line_item.save
 

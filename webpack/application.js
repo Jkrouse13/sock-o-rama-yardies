@@ -4,8 +4,11 @@ import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
 import { sharedState, attachSharedState, detachSharedState } from 'react-helpers/dist/sharedState'
 
 sharedState({
-  socks: []
+  socks: [],
+  itemsInCart: 0
 })
+
+window.sharedState = sharedState
 
 import App from './components/App'
 import Store from './components/Store'
