@@ -12,8 +12,8 @@ class Socks extends React.Component {
     }
 
     componentDidMount() {
-        // attachSharedState(this, (state) => this.setState({sharedState: state}))
-        attachSharedState(this)
+        attachSharedState(this, (state) => this.setState({sharedState: state}))
+        // attachSharedState(this)
 
         this.getSocks()
     }
@@ -38,16 +38,27 @@ class Socks extends React.Component {
     }
 
     render() {
-        var socks = this.state.socks.map(function(sock,i) {
-            return <Sock sock={sock} key={i} />
+        var socks = sharedState().socks.map(function(sock,i) {
+            return <Sock sock={sock} key={i}/>
+
         })
 
         console.log('render', this.state.socks)
 
         return <div className="container">
-        <div className="row">
-         {socks}
-         </div>
+            <div className="row">
+                <div className="col-sm-12 well">
+                    <h3>Filters</h3>
+                    <ul className="list-unstyled list-inline">
+                        <li>Size</li>
+                        <li>Color</li>
+                        <li>Material</li>
+                    </ul>
+                </div>
+            </div>
+          <div className="row well">
+           {socks}
+           </div>
         </div>
     }
 }
