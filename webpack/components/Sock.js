@@ -95,7 +95,7 @@ class Sock extends React.Component {
               <div className="thumbnail">
                 {/* <img src={this.props.sock.image} alt="..."   /> */}
                 {/* // TODO: Remove hardcoded image */}
-                 <img className="img-responsive" src="http://www.llamafibercoop.com/Socks%20no%20pricing.jpg" width="400" alt="sock image" />
+                 <img className="img-responsive" src={this.props.sock.image} width="400" alt="sock image" />
                 <div className="caption">
                   <h3>{this.props.sock.name}</h3>
                   {/* <p>{this.props.sock.description}</p> */}
@@ -116,7 +116,7 @@ class Sock extends React.Component {
                            <div className="modal-body">
                              <div className="row">
                                <div className="col-md-6">
-                                 <img className="img-responsive" src="http://www.llamafibercoop.com/Socks%20no%20pricing.jpg" width="400" alt="sock image" />
+                                 <img className="img-responsive" src={this.props.sock.image} width="400" alt="sock image" />
                                  <h2>Materials</h2>
                                  <p>{this.props.sock.material}</p>
                                </div>

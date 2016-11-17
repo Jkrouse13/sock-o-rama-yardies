@@ -6,7 +6,7 @@ const Item = (props) => <div className="container headerMargin">
         <div className="col-sm-9">
 
                     <div className="row">
-                        <div className="col-xs-2"><img className="img-responsive" src="http://ecx.images-amazon.com/images/I/91-M8oHN-TL._UX679_.jpg"/>
+                        <div className="col-xs-2"><img className="img-responsive" src={props.item.size.sock.image}/>
                         </div>
                         <div className="col-xs-4">
                             <h4 className="product-name"><strong>{props.item.size.sock.name}</strong></h4><h4><small>{props.item.size.sock.description}</small></h4>
