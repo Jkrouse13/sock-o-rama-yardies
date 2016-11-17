@@ -19,7 +19,7 @@ blend = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0
   blend[row,5].split(",").collect(&:strip).each do |abr|
     Size.create!(
     arrb: abr.match(/[A-Z]/i)[0],
-    stock_quantitiy: abr.match(/\d+/)[0].to_i,
+    stock_quantity: abr.match(/\d+/)[0].to_i,
     sock: Sock.create!(
       name: blend[row, 1],
       color: Color.where(name: blend[row, 2]).first_or_create,
@@ -37,7 +37,7 @@ llama = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0
   blend[row,5].split(",").collect(&:strip).each do |abr|
     Size.create!(
     arrb: abr.match(/[A-Z]/i)[0],
-    stock_quantitiy: abr.match(/\d+/)[0].to_i,
+    stock_quantity: abr.match(/\d+/)[0].to_i,
     sock: Sock.create!(
       name: llama[row, 1],
       color: Color.where(name: llama[row, 2]).first_or_create,
@@ -56,7 +56,7 @@ alpaca = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ
   blend[row,5].split(",").collect(&:strip).each do |abr|
     Size.create!(
     arrb: abr.match(/[A-Z]/i)[0],
-    stock_quantitiy: abr.match(/\d+/)[0].to_i,
+    stock_quantity: abr.match(/\d+/)[0].to_i,
     sock: Sock.create!(
       name: alpaca[row, 1],
       color: Color.where(name: alpaca[row, 2]).first_or_create,
@@ -74,7 +74,7 @@ wool = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0"
   wool[row,5].split(",").collect(&:strip).each do |abr|
     Size.create!(
     arrb: abr.match(/[A-Z]/i)[0],
-    stock_quantitiy: abr.match(/\d+/)[0].to_i,
+    stock_quantity: abr.match(/\d+/)[0].to_i,
     sock: Sock.create!(
       name: wool[row, 1],
       color: Color.where(name: wool[row, 2]).first_or_create,
