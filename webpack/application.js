@@ -5,7 +5,11 @@ import { sharedState, attachSharedState, detachSharedState } from 'react-helpers
 
 sharedState({
   socks: [],
+<<<<<<< HEAD
+  line_items: []
+=======
   itemsInCart: 0
+>>>>>>> ca0f1907693884c8eb8c268e6df1c53996867097
 })
 
 window.sharedState = sharedState

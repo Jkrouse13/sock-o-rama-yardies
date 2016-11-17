@@ -10,6 +10,10 @@ body {
   margin-top: 100px;
 }
 
+.clearButton {
+  margin-bottom: 20px;
+}
+
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
