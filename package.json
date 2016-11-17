@@ -7,9 +7,6 @@
     "build": "webpack"
   },
   "devDependencies": {
-    "stats-webpack-plugin": "^0.2.1",
-    "webpack": "^1.9.11",
-    "webpack-dev-server": "^1.9.0",
     "babel": "^6.5.2",
     "babel-cli": "^6.10.1",
     "babel-core": "^6.16.0",
@@ -27,9 +24,14 @@
     "redux": "^3.5.2",
     "redux-devtools": "^3.3.1",
     "redux-devtools-dock-monitor": "^1.1.1",
-    "redux-devtools-log-monitor": "^1.0.11"
-    },
-    "dependencies": {
-      "moment": "^2.15.2"
-    }
+    "redux-devtools-log-monitor": "^1.0.11",
+    "stats-webpack-plugin": "^0.2.1",
+    "webpack": "^1.9.11",
+    "webpack-dev-server": "^1.9.0"
+  },
+  "dependencies": {
+    "accounting-js": "^1.1.1",
+    "moment": "^2.15.2",
+    "react-modal": "^1.5.2"
+  }
 }
