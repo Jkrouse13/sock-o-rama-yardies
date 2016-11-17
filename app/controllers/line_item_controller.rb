@@ -9,16 +9,27 @@ class LineItemController < ApplicationController
   # end
 
   def create
-    @line_item = LineItem.new(
-    cart: Cart.where.(token: params[:token]).first_or_initialize,
-    size_id:    params[:size_id],
-    quantity:  params[:quantity],
-    sock_id:    params[:sock_id]
-    )
+    if params[:token]
+      @line_item = LineItem.new(
+      cart: Cart.where.(token: params[:token]).first_or_initialize,
+      size_id:    params[:size_id],
+      quantity:  params[:quantity],
+      sock_id:    params[:sock_id]
+      )
+      { success: 'Item was successfully added to cart.' }
+      @line_item.save
 
-    { success: 'Item was successfully added to cart.' }
-    @line_item.save
-    render json: @line_item
+    else
+      @line_item = LineItem.new(
+      cart: Cart.new,
+      size_id:    params[:size_id],
+      quantity:  params[:quantity],
+      sock_id:    params[:sock_id]
+      )
+      @line_item.save
+
+    end
+      render json: @line_item
   end
 
   # def edit #has template, diplays form of exsisting record
