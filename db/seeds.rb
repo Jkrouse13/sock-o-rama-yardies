@@ -7,20 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "google_drive"
 session = GoogleDrive::Session.from_config("config.json")
-# session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['google_secret']))
-# Sock.create(
-#   style: Style.find_or_initialize_by(name: "crew"),
-#   color: Color.find_or_initialize_by(name: "grey"),
-#   name: "The Sock Monkey",
-#   price: 2700
-# )
+
 blend = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0").worksheets[0]
 (2..blend.num_rows).each do |row|
   blend[row,5].split(",").collect(&:strip).each do |abr|
     Size.create!(
-    arrb: abr.match(/[A-Z]/i)[0],
+    arrb: abr.match(/[A-Z]+/i)[0],
     stock_quantity: abr.match(/\d+/)[0].to_i,
-    sock: Sock.create!(
+    sock: Sock.where(name: blend[row, 1]).first_or_create(
       name: blend[row, 1],
       color: Color.where(name: blend[row, 2]).first_or_create,
       style: Style.where(name: blend[row, 3]).first_or_create,
@@ -36,9 +30,9 @@ llama = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0
 (2..llama.num_rows).each do |row|
   blend[row,5].split(",").collect(&:strip).each do |abr|
     Size.create!(
-    arrb: abr.match(/[A-Z]/i)[0],
+    arrb: abr.match(/[A-Z]+/i)[0],
     stock_quantity: abr.match(/\d+/)[0].to_i,
-    sock: Sock.create!(
+    sock: Sock.where(name: llama[row, 1]).first_or_create(
       name: llama[row, 1],
       color: Color.where(name: llama[row, 2]).first_or_create,
       style: Style.where(name: llama[row, 3]).first_or_create,
@@ -55,9 +49,9 @@ alpaca = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ
 (2..alpaca.num_rows).each do |row|
   blend[row,5].split(",").collect(&:strip).each do |abr|
     Size.create!(
-    arrb: abr.match(/[A-Z]/i)[0],
+    arrb: abr.match(/[A-Z]+/i)[0],
     stock_quantity: abr.match(/\d+/)[0].to_i,
-    sock: Sock.create!(
+    sock: Sock.where(name: alpaca[row, 1]).first_or_create(
       name: alpaca[row, 1],
       color: Color.where(name: alpaca[row, 2]).first_or_create,
       style: Style.where(name: alpaca[row, 3]).first_or_create,
@@ -73,9 +67,9 @@ wool = session.spreadsheet_by_key("1m_x4ZtQzTHYldutf_i90uXSfKfEjFXSPvyV_L58nDJ0"
 (2..blend.num_rows).each do |row|
   wool[row,5].split(",").collect(&:strip).each do |abr|
     Size.create!(
-    arrb: abr.match(/[A-Z]/i)[0],
+    arrb: abr.match(/[A-Z]+/i)[0],
     stock_quantity: abr.match(/\d+/)[0].to_i,
-    sock: Sock.create!(
+    sock: Sock.where(name: wool[row, 1]).first_or_create(
       name: wool[row, 1],
       color: Color.where(name: wool[row, 2]).first_or_create,
       style: Style.where(name: wool[row, 3]).first_or_create,
