@@ -7,13 +7,13 @@ class ChargesController < ApplicationController
         @cart=Cart.find_by(token: params[:token])
             @amount = @cart.grand_total
             @cart.update(
-            street: params[:street],
-            city:  params[:city],
-            state:  params[:state],
-            zip:  params[:zip],
-            country:  params[:country],
-            first_name:  params[:first_name],
-            last_name:  params[:last_name],
+            street: params[:shippingstreet],
+            city:  params[:shippingcity],
+            state:  params[:shippingstate],
+            zip:  params[:shippingzip],
+            country:  params[:shippingcountry],
+            first_name:  params[:firstname],
+            last_name:  params[:lastname],
             email:  params[:stripeEmail])
             customer = Stripe::Customer.create(
                 email: params[:stripeEmail],
