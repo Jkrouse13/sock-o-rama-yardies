@@ -5,6 +5,7 @@ import classAutoBind from 'react-helpers/dist/classAutoBind'
 import Carousel from './Carousel'
 import Socks from './Socks'
 
+
 class Store extends React.Component {
     constructor(props) {
         super(props)
