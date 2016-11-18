@@ -1,4 +1,4 @@
-  --
+--
 -- PostgreSQL database dump
 --
 
@@ -52,13 +52,17 @@ CREATE TABLE ar_internal_metadata (
 CREATE TABLE carts (
     id integer NOT NULL,
     token character varying,
-    shipping_address character varying,
+    country character varying,
     email character varying,
     first_name character varying,
     last_name character varying,
     complete boolean,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    street character varying,
+    city character varying,
+    state character varying,
+    zip character varying
 );
 
 
@@ -566,4 +570,6 @@ ALTER TABLE ONLY socks
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613'), ('20161115195615'), ('20161115200321'), ('20161115202523'), ('20161115203107'), ('20161115203956'), ('20161116173255'), ('20161116181748'), ('20161116183251'), ('20161116200608'), ('20161116230841'), ('20161116232638'), ('20161116233342'), ('20161117175827'), ('20161117190521');
+INSERT INTO schema_migrations (version) VALUES ('20161115134928'), ('20161115194520'), ('20161115194529'), ('20161115194613'), ('20161115195615'), ('20161115200321'), ('20161115202523'), ('20161115203107'), ('20161115203956'), ('20161116173255'), ('20161116181748'), ('20161116183251'), ('20161116200608'), ('20161116230841'), ('20161116232638'), ('20161116233342'), ('20161117175827'), ('20161117190521'), ('20161118141230');
+
+
