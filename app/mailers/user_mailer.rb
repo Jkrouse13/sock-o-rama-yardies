@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     # default Hash - This is a hash of default values for any email you send from this mailer. In this case we are setting the :from header to a value for all messages in this class. This can be overridden on a per-email basis.
     def thankyou_email(user)
         @user = user
-        @url = `http://Sock-o-Rama.com/`
+        @url = `http://Sock-o-Rama.com/login`
         mail(to: @user.email, subject: `Thank you for shopping at Sock-o-Rama`)
         # mail - The actual email message, we are passing the :to and :subject headers in
     end

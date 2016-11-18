@@ -27,6 +27,7 @@ class ChargesController < ApplicationController
                 currency: 'usd'
                 )
                 @cart.complete = true
+                UserMailer.thankyou_email(@user).deliver_now
                 render json: #cart, charge,
                     {success: 'Thank you for shopping at Sock-O-Rama.' }
 
