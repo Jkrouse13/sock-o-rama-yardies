@@ -7,7 +7,7 @@ class Cart < ApplicationRecord
   end
 
   def tax
-    (sub_total * 1.00) * 0.06
+    (sub_total * 0.06).to_i
   end
 
   def shipping
