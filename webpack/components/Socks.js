@@ -50,16 +50,16 @@ class Socks extends React.Component {
   <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Your order was successful.</strong> Thank you and enjoy your socks!
 </div> : ''}
-            <div className="row">
+            {/* <div className="row">
                 <div className="col-sm-12 well">
-                    <h3>Filters</h3>
+                    <h2>Filters</h2>
                     <ul className="list-unstyled list-inline">
                         <li>Size</li>
                         <li>Color</li>
                         <li>Material</li>
                     </ul>
                 </div>
-            </div>
+            </div> */}
           <div className="row well">
            {socks}
            </div>

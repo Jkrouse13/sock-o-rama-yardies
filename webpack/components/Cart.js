@@ -83,9 +83,9 @@ class Cart extends React.Component {
                         </div>
                         <div className="row text-center">
                             <div className="col-xs-3 clearButton">
-                                <button type="button" className="btn btn-info btn-block">
+                                {/* <button type="button" className="btn btn-info btn-block">
                                     Clear
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ class Cart extends React.Component {
                             <div className="row text-center">
                                 <div className="col-xs-12">
                                     <Link to="/checkout" className="btn btn-success btn-block">Checkout</Link>
-
+                                    <Link to="/" className="btn btn-danger btn-block">Continue Shopping</Link>
                                 </div>
                             </div>
                         </div>
