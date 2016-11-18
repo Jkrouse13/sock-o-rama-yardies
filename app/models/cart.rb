@@ -2,8 +2,9 @@ class Cart < ApplicationRecord
   has_secure_token :token
   has_many :line_items
 
+
   def sub_total
-    line_items.collect{ |line| line.valid? ? (line.cost) : 0}.sum
+    line_items.collect{ |line| (line.cost) : 0}.sum
   end
 
   def tax
@@ -11,7 +12,7 @@ class Cart < ApplicationRecord
   end
 
   def shipping
-    (line_items.collect{ |line| line.valid? ? (line.item_quantity) : 0}.sum) * 200
+    (line_items.collect{ |line| (line.item_quantity) : 0}.sum) * 200
   end
 
   def grand_total
