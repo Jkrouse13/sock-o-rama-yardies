@@ -4,7 +4,7 @@ class Cart < ApplicationRecord
 
 
   def sub_total
-    line_items.collect{ |line| (line.cost) : 0}.sum
+    line_items.collect{ |line| (line.cost)}.sum
   end
 
   def tax
@@ -12,7 +12,7 @@ class Cart < ApplicationRecord
   end
 
   def shipping
-    (line_items.collect{ |line| (line.item_quantity) : 0}.sum) * 200
+    (line_items.collect{ |line| (line.item_quantity)}.sum) * 200
   end
 
   def grand_total
