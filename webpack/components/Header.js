@@ -9,7 +9,7 @@ class Header extends React.Component {
     classAutoBind(this)
     // this.state = {}
 
-    
+
     this.state = sharedState()
 }
 
@@ -43,7 +43,7 @@ class Header extends React.Component {
                 <li><a href="#contact">Contact</a></li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                <li><Link to="/cart" className="btn btn-default"><span className="glyphicon glyphicon-shopping-cart"></span> Cart {this.state.itemsInCart}</Link></li>
+                <li><Link to="/cart" className={this.state.itemsInCart > 0? 'btn btn-default': 'btn btn-default disabled'}><span className="glyphicon glyphicon-shopping-cart"></span> Cart {this.state.itemsInCart}</Link></li>
               </ul>
             </div>
           </div>

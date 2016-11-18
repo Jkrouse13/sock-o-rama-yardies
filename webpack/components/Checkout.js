@@ -147,12 +147,12 @@ handleShippingZipCode(e) {
     })
 }
 
-handleShippingCountry(e) {
-    var shippingCountry = event.target.options[event.target.selectedIndex].value
-    this.setState({
-        shippingCountry: shippingCountry
-    })
-}
+// handleShippingCountry(e) {
+//     var shippingCountry = event.target.options[event.target.selectedIndex].value
+//     this.setState({
+//         shippingCountry: shippingCountry
+//     })
+// }
 
 handleBillingStreetAddress(e) {
     var billingStreetAddress = e.target.value
@@ -182,12 +182,33 @@ handleBillingZipCode(e) {
     })
 }
 
-handleBillingCountry(e) {
-    var billingCountry = event.target.options[event.target.selectedIndex].value
+// handleBillingCountry(e) {
+//     var billingCountry = event.target.options[event.target.selectedIndex].value
+//     this.setState({
+//         billingCountry: billingCountry
+//     })
+// }
+
+toggleAddresses(e) {
+  if (e.target.checked) {
     this.setState({
-        billingCountry: billingCountry
+      billingStreetAddress: this.state.shippingStreetAddress,
+      billingCity: this.state.shippingCity,
+      billingState: this.state.shippingState,
+      billingZipCode: this.state.shippingZipCode,
+      // billingCountry: this.state.shippingCountry,
     })
-}
+  } else {
+      this.setState({
+        billingStreetAddress: '',
+        billingCity: '',
+        billingState: '',
+        billingZipCode: '',
+        // billingCountry: '',
+      })
+    }
+  }
+
 
 
     render() {
@@ -223,6 +244,13 @@ handleBillingCountry(e) {
                 <div className="panel-heading">
                    <h3>Shipping Information</h3>
                </div>
+               <div className="checkbox">
+                   <label>
+                     <input type="hidden" name="same_same" value="no" />
+                     <input type="checkbox" name="same_same" value="yes" onClick={this.toggleAddresses}/>
+                     Check if Billing & Shipping are the same
+                  </label>
+                 </div>
 
 
 <div className="row">
@@ -256,7 +284,7 @@ handleBillingCountry(e) {
                            </div>
 
                        </div>
-                       <div className="col-sm-6">
+                       {/* <div className="col-sm-6">
                            <div className="form-group">
                                <label htmlFor="shipping_country">Country</label>
                                <select className="form-control" id="shipping_country" name="shipping_country" onChange={this.handleShippingCountry} value={this.state.shippingCountry}>
@@ -268,7 +296,7 @@ handleBillingCountry(e) {
 
                                </select>
                            </div>
-                       </div>
+                       </div> */}
 
                </div>
                <div className="panel-heading"><h3>Billing Information</h3></div>
@@ -303,7 +331,7 @@ handleBillingCountry(e) {
                            </div>
 
                        </div>
-                       <div className="col-sm-6">
+                       {/* <div className="col-sm-6">
                            <div className="form-group">
                                <label htmlFor="billing_country">Country</label>
                                <select className="form-control" id="billing_country" name="billing_country" onChange={this.handleBillingCountry} value={this.state.billingCountry}>
@@ -315,7 +343,7 @@ handleBillingCountry(e) {
 
                                </select>
                            </div>
-                       </div>
+                       </div> */}
 
                </div>
 

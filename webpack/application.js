@@ -16,12 +16,12 @@ sharedState({
   shippingCity: '',
   shippingState: '',
   shippingZipCode: '',
-  shippingCountry: '',
+  // shippingCountry: '',
   billingStreetAddress: '',
   billingCity: '',
   billingState: '',
   billingZipCode: '',
-  billingCountry: '',
+  // billingCountry: '',
   cart: {}
 })
 
