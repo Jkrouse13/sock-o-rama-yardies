@@ -17,10 +17,10 @@
 .byebug_history
 # Added by webpack-rails
 /node_modules
-/public/webpack
 npm-debug.log
 yarn-error.log
 
+/db/structure.sql
 
 # Ignore application configuration
 /config/application.yml

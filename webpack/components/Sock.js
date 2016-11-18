@@ -8,7 +8,7 @@ class Sock extends React.Component {
     constructor(props) {
         super(props)
         classAutoBind(this)
-        console.log(props.sock.sizes[0].id)
+        // console.log(props.sock.sizes[0].id)
         this.state = {
             // sharedState: sharedState(),
             modalIsOpen: false,
@@ -82,7 +82,7 @@ class Sock extends React.Component {
     }
 
     handleSizeChange(event) {
-        console.log(event.target.options[event.target.selectedIndex].value)
+        // console.log(event.target.options[event.target.selectedIndex].value)
         this.setState({size_id: event.target.options[event.target.selectedIndex].value});
     }
 
@@ -95,7 +95,7 @@ class Sock extends React.Component {
               <div className="thumbnail">
                 {/* <img src={this.props.sock.image} alt="..."   /> */}
                 {/* // TODO: Remove hardcoded image */}
-                 <img className="img-responsive" src={this.props.sock.image} width="400" alt="sock image" />
+                <img className="img-responsive" src={this.props.sock.image} width="400" alt="sock image" />
                 <div className="caption">
                   <h3>{this.props.sock.name}</h3>
                   {/* <p>{this.props.sock.description}</p> */}

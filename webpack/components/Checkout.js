@@ -22,10 +22,8 @@ class Checkout extends React.Component {
     }
 
     handleSubmit(e) {
-      console.log('hi')
         var $form = $('#payment-form');
-        console.log($form)
-        console.log(e.target)
+
         // Disable the submit button to prevent repeated clicks:
         $form.find('.submit').prop('disabled', true);
 
@@ -57,7 +55,19 @@ stripeResponseHandler(status, response) {
       body: JSON.stringify(
         {
           stripeToken: token,
-          stripeEmail: this.state.email
+          stripeEmail: this.state.email,
+          customerFirstName: this.state.firstName,
+          customerLastName: this.state.lastName,
+          customerShippingStreetAddress: this.state.shippingStreetAddress,
+          customerShippingCity: this.state.shippingCity,
+          customerShippingState: this.state.shippingState,
+          customerShippingZipCode: this.state.shippingZipCode,
+          customerShippingCountry: this.state.shippingCountry,
+          customerBillingStreetAddress: this.state.billingStreetAddress,
+          customerBillingCity: this.state.billingCity,
+          customerBillingState: this.state.billingState,
+          customerBillingZipCode: this.state.billingZipCode,
+          customerBillingCountry: this.state.billingCountry,
         }
       ),
       headers: {
@@ -76,13 +86,14 @@ stripeResponseHandler(status, response) {
 }
 
 handleStripResponse(response) {
-  console.log(response)
+  // console.log(response)
   if (response.success) {
     sharedState({
       line_items: [],
       itemsInCart: 0,
       cartToken: '',
-      checkedOut: true
+      checkedOut: true,
+      cart: {}
     })
     browserHistory.push('/')
   }
@@ -93,6 +104,91 @@ handleEmail(e) {
     email: e.target.value
   })
 }
+
+handleFirstName(e) {
+    var firstName = e.target.value
+    this.setState({
+        firstName: firstName
+    })
+}
+
+handleLastName(e) {
+    var lastName = e.target.value
+    this.setState({
+        lastName: lastName
+    })
+}
+
+handleShippingStreetAddress(e) {
+    var shippingStreetAddress = e.target.value
+    this.setState({
+        shippingStreetAddress: shippingStreetAddress
+    })
+}
+
+handleShippingCity(e) {
+    var shippingCity = e.target.value
+    this.setState({
+        shippingCity: shippingCity
+    })
+}
+
+handleShippingState(e) {
+    var shippingState = e.target.value
+    this.setState({
+        shippingState: shippingState
+    })
+}
+
+handleShippingZipCode(e) {
+    var shippingZipCode = e.target.value
+    this.setState({
+        shippingZipCode: shippingZipCode
+    })
+}
+
+handleShippingCountry(e) {
+    var shippingCountry = event.target.options[event.target.selectedIndex].value
+    this.setState({
+        shippingCountry: shippingCountry
+    })
+}
+
+handleBillingStreetAddress(e) {
+    var billingStreetAddress = e.target.value
+    this.setState({
+        billingStreetAddress: billingStreetAddress
+    })
+}
+
+handleBillingCity(e) {
+    var billingCity = e.target.value
+    this.setState({
+        billingCity: billingCity
+    })
+}
+
+handleBillingState(e) {
+    var billingState = e.target.value
+    this.setState({
+        billingState: billingState
+    })
+}
+
+handleBillingZipCode(e) {
+    var billingZipCode = e.target.value
+    this.setState({
+        billingZipCode: billingZipCode
+    })
+}
+
+handleBillingCountry(e) {
+    var billingCountry = event.target.options[event.target.selectedIndex].value
+    this.setState({
+        billingCountry: billingCountry
+    })
+}
+
 
     render() {
         return <div className="container headerMargin">
@@ -108,16 +204,16 @@ handleEmail(e) {
                     <div className="col-sm-6">
 
                         <div className="form-group">
-                            <label for="first_name">First Name</label>
-                            <input type="text" id="first_name" name="first_name" className="form-control" placeholder="First Name" />
+                            <label htmlFor="first_name">First Name</label>
+                            <input type="text" id="first_name" name="first_name" className="form-control" placeholder="First Name" onChange={this.handleFirstName} value={this.state.firstName} />
                         </div>
 
                     </div>
                     <div className="col-sm-6">
 
                         <div className="form-group">
-                            <label for="last_name">Last Name</label>
-                            <input type="text" id="last_name" name="last_name" className="form-control" placeholder="Last Name"/>
+                            <label htmlFor="last_name">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" className="form-control" placeholder="Last Name" onChange={this.handleLastName} value={this.state.lastName} />
 
                         </div>
 
@@ -126,13 +222,6 @@ handleEmail(e) {
                 </div>
                 <div className="panel-heading">
                    <h3>Shipping Information</h3>
-                   <div className="checkbox">
-                      <label>
-                        <input type="hidden" name="same_same" value="no" />
-                        <input type="checkbox" name="same_same" value="yes"/>
-                        Check if Billing & Shipping are the same
-                     </label>
-                    </div>
                </div>
 
 
@@ -140,37 +229,37 @@ handleEmail(e) {
                    <div className="col-sm-5">
 
                        <div className="form-group">
-                           <label for="shipping_address" >Street Address</label>
-                           <input type="text" id="shipping_address" name="shipping_street_address" className="form-control" placeholder="Street Address" />
+                           <label htmlFor="shipping_address" >Street Address</label>
+                           <input type="text" id="shipping_address" name="shipping_street_address" className="form-control" placeholder="Street Address" onChange={this.handleShippingStreetAddress} value={this.state.shippingStreetAddress} />
                        </div>
 
                    </div>
                    <div className="col-sm-5">
                        <div className="form-group">
-                           <label for="shipping_city">City</label>
-                           <input type="text" id="shipping_city" name="shipping_city" placeholder="City" className="form-control" />
+                           <label htmlFor="shipping_city">City</label>
+                           <input type="text" id="shipping_city" name="shipping_city" placeholder="City" className="form-control" onChange={this.handleShippingCity} value={this.state.shippingCity} />
 
                        </div>
 
                    </div>
                    <div className="col-sm-2">
                        <div className="form-group">
-                           <label for="shipping_state">State</label>
-                           <input type="text" id="shipping_state" name="state" maxlength="2" className="form-control" />
+                           <label htmlFor="shipping_state">State</label>
+                           <input type="text" id="shipping_state" name="state" maxLength="2" className="form-control" onChange={this.handleShippingState} value={this.state.shippingState} />
                        </div>
                    </div>
                        <div className="col-sm-6">
                            <div className="form-group">
-                               <label for="shipping_zip_code">Zip Code</label>
-                               <input type="text" id="shipping_zip_code" name="shipping_zip_code" placeholder="Zip Code" className="form-control" />
+                               <label htmlFor="shipping_zip_code">Zip Code</label>
+                               <input type="text" id="shipping_zip_code" name="shipping_zip_code" placeholder="Zip Code" className="form-control" onChange={this.handleShippingZipCode} value={this.state.shippingZipCode} />
 
                            </div>
 
                        </div>
                        <div className="col-sm-6">
                            <div className="form-group">
-                               <label for="shipping_country">Country</label>
-                               <select className="form-control" id="shipping_country" name="shipping_country">
+                               <label htmlFor="shipping_country">Country</label>
+                               <select className="form-control" id="shipping_country" name="shipping_country" onChange={this.handleShippingCountry} value={this.state.shippingCountry}>
                                    <option value="US">US</option>
                                    <option value="CA">Canada</option>
                                    <option value="MX">Mexico</option>
@@ -188,36 +277,36 @@ handleEmail(e) {
 
                        <div className="form-group">
                            <label >Street Address</label>
-                           <input type="text" id="billing_address" name="billing_street_address" className="form-control" placeholder="Street Address" required />
+                           <input type="text" id="billing_address" name="billing_street_address" className="form-control" placeholder="Street Address" onChange={this.handleBillingStreetAddress} value={this.state.billingStreetAddress} required />
                        </div>
 
                    </div>
                    <div className="col-sm-5">
                        <div className="form-group">
-                           <label for="billing_city">City</label>
-                           <input type="text" id="billing_city" name="billing_city" placeholder="City" className="form-control" required />
+                           <label htmlFor="billing_city">City</label>
+                           <input type="text" id="billing_city" name="billing_city" placeholder="City" className="form-control" onChange={this.handleBillingCity} value={this.state.billingCity} required />
 
                        </div>
 
                    </div>
                    <div className="col-sm-2">
                        <div className="form-group">
-                           <label for="billing_state">State</label>
-                           <input type="text" id="billing_state" name="billing_state" maxlength="2" className="form-control" required />
+                           <label htmlFor="billing_state">State</label>
+                           <input type="text" id="billing_state" name="billing_state" maxLength="2" className="form-control" onChange={this.handleBillingState} value={this.state.billingState} required />
                        </div>
                    </div>
                        <div className="col-sm-6">
                            <div className="form-group">
-                               <label for="billing_zip_code">Zip Code</label>
-                               <input type="text" id="billing_zip_code" name="billing_zip_code" placeholder="Zip Code" className="form-control" required />
+                               <label htmlFor="billing_zip_code">Zip Code</label>
+                               <input type="text" id="billing_zip_code" name="billing_zip_code" placeholder="Zip Code" className="form-control" onChange={this.handleBillingZipCode} value={this.state.billingZipCode} required />
 
                            </div>
 
                        </div>
                        <div className="col-sm-6">
                            <div className="form-group">
-                               <label for="billing_country">Country</label>
-                               <select className="form-control" id="billing_country" name="billing_country">
+                               <label htmlFor="billing_country">Country</label>
+                               <select className="form-control" id="billing_country" name="billing_country" onChange={this.handleBillingCountry} value={this.state.billingCountry}>
                                    <option value="US">US</option>
                                    <option value="CA">Canada</option>
                                    <option value="MX">Mexico</option>
@@ -230,7 +319,7 @@ handleEmail(e) {
 
                </div>
 
-   <div className="panel">
+   <div className="panel well">
        <div className="panel-heading"><h3>Payment Information</h3></div>
 
        <div className="row">

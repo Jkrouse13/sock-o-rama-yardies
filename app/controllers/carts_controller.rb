@@ -4,7 +4,7 @@ class CartsController < ApplicationController
 
   def show #has template, renders view
     @cart= Cart.find_by(token: params[:token])
-    render json: @cart.line_items, include: "size.sock"
+    render json: @cart,  include: "line_items.size.sock"
 
     # Cart total
   end

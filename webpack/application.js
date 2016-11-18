@@ -9,7 +9,20 @@ sharedState({
   itemsInCart: 0,
   cartToken: '',
   email: '',
-  checkedOut: false
+  checkedOut: false,
+  firstName: '',
+  lastName: '',
+  shippingStreetAddress: '',
+  shippingCity: '',
+  shippingState: '',
+  shippingZipCode: '',
+  shippingCountry: '',
+  billingStreetAddress: '',
+  billingCity: '',
+  billingState: '',
+  billingZipCode: '',
+  billingCountry: '',
+  cart: {}
 })
 
 window.sharedState = sharedState

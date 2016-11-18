@@ -16,12 +16,13 @@ const Item = (props) => <div className="container headerMargin">
                                 <h6><strong>{accounting.format(props.item.size.sock.price/100)} <span className="text-muted">x</span></strong></h6>
                             </div>
                             <div className="col-xs-4">
-                                <input onClick="" onChange="" type="text" className="form-control input-sm" value={props.item.item_quantity}/>
+                                {/* <input onClick="" onChange="" type="text" className="form-control input-sm" value={props.item.item_quantity}/> */}
+                                <p>{props.item.item_quantity}</p>
                             </div>
                             <div className="col-xs-2">
-                                <button type="button" className="btn btn-link btn-xs">
+                                {/* <button type="button" className="btn btn-link btn-xs">
                                     <span className="glyphicon glyphicon-trash"> </span>
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>

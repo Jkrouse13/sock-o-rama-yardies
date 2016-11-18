@@ -1,6 +1,8 @@
 class LineItem < ApplicationRecord
   belongs_to :size
   belongs_to :cart
+  has_one :sock, through: :size
+  validates :item_quantity, numericality: { greater_than_or_equal_to: 1, only_integer: true } #thanks Brent!
   def new
   end
 

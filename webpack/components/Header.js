@@ -8,6 +8,8 @@ class Header extends React.Component {
     super(props)
     classAutoBind(this)
     // this.state = {}
+
+    
     this.state = sharedState()
 }
 
