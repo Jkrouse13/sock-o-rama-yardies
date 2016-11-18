@@ -63,13 +63,6 @@ class Checkout extends React.Component {
                 </div>
                 <div className="panel-heading">
                    <h3>Shipping Information</h3>
-                   <div className="checkbox">
-                      <label>
-                        <input type="hidden" name="same_same" value="no" />
-                        <input type="checkbox" name="same_same" value="yes"/>
-                        Check if Billing & Shipping are the same
-                     </label>
-                    </div>
                </div>
 
 
