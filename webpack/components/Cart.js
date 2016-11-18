@@ -1,6 +1,7 @@
 import React from 'react'
 import { sharedState, attachSharedState, detachSharedState } from 'react-helpers/dist/sharedState'
 import classAutoBind from 'react-helpers/dist/classAutoBind'
+import accounting from 'accounting-js'
 import { Link } from 'react-router'
 import Item from './Item'
 
@@ -33,14 +34,15 @@ class Cart extends React.Component {
     }
 
     handleCart(response) {
-        console.log('cart: ', response)
+        // console.log('cart: ', response)
         sharedState({
-            line_items: response.line_items
+            line_items: response.cart.line_items,
+            cart: response.cart
         })
     }
 
     render() {
-        console.log('render stuff', this.state.cart)
+        // console.log('render stuff', this.state.cart)
 
         var items = this.state.line_items.map(function(item,i) {
             return <Item item={item} key={i} />
@@ -57,7 +59,7 @@ class Cart extends React.Component {
                                     <h6 className="text-right">Tax</h6>
                                 </div>
                                 <div className="col-xs-2">
-                                    <p></p>
+                                    <p>{this.state.cart.tax? accounting.format(this.state.cart.tax/100): '0'}</p>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +69,7 @@ class Cart extends React.Component {
                                     <h6 className="text-right">Shipping</h6>
                                 </div>
                                 <div className="col-xs-2">
-                                    <p></p>
+                                    <p>{this.state.cart.shipping? accounting.format(this.state.cart.shipping/100) : 0}</p>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +79,17 @@ class Cart extends React.Component {
                                     <h6 className="text-right">Sub Total</h6>
                                 </div>
                                 <div className="col-xs-2">
-                                    <p></p>
+                                    <p>{this.state.cart.sub_total? accounting.format(this.state.cart.sub_total/100) : '0'}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="text-center">
+                                <div className="col-xs-10">
+                                    <h6 className="text-right"><strong>Total</strong></h6>
+                                </div>
+                                <div className="col-xs-2">
+                                    <p><strong>{this.state.cart.grand_total? accounting.format(this.state.cart.grand_total/100) : '0'}</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +106,7 @@ class Cart extends React.Component {
                             <div className="row text-right">
                                 <div className="col-xs-12">
                                     <h4 className="text-right">Total
-                                        <strong> $50.00</strong></h4>
+                                        <strong> {this.state.cart.grand_total? accounting.format(this.state.cart.grand_total/100) : '0'}</strong></h4>
                                 </div>
                             </div>
                             <div className="row text-center">

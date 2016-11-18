@@ -22,10 +22,8 @@ class Checkout extends React.Component {
     }
 
     handleSubmit(e) {
-      console.log('hi')
         var $form = $('#payment-form');
-        console.log($form)
-        console.log(e.target)
+
         // Disable the submit button to prevent repeated clicks:
         $form.find('.submit').prop('disabled', true);
 
@@ -88,13 +86,14 @@ stripeResponseHandler(status, response) {
 }
 
 handleStripResponse(response) {
-  console.log(response)
+  // console.log(response)
   if (response.success) {
     sharedState({
       line_items: [],
       itemsInCart: 0,
       cartToken: '',
-      checkedOut: true
+      checkedOut: true,
+      cart: {}
     })
     browserHistory.push('/')
   }
@@ -205,7 +204,7 @@ handleBillingCountry(e) {
                     <div className="col-sm-6">
 
                         <div className="form-group">
-                            <label for="first_name">First Name</label>
+                            <label htmlFor="first_name">First Name</label>
                             <input type="text" id="first_name" name="first_name" className="form-control" placeholder="First Name" onChange={this.handleFirstName} value={this.state.firstName} />
                         </div>
 
@@ -213,7 +212,7 @@ handleBillingCountry(e) {
                     <div className="col-sm-6">
 
                         <div className="form-group">
-                            <label for="last_name">Last Name</label>
+                            <label htmlFor="last_name">Last Name</label>
                             <input type="text" id="last_name" name="last_name" className="form-control" placeholder="Last Name" onChange={this.handleLastName} value={this.state.lastName} />
 
                         </div>
@@ -237,14 +236,14 @@ handleBillingCountry(e) {
                    <div className="col-sm-5">
 
                        <div className="form-group">
-                           <label for="shipping_address" >Street Address</label>
+                           <label htmlFor="shipping_address" >Street Address</label>
                            <input type="text" id="shipping_address" name="shipping_street_address" className="form-control" placeholder="Street Address" onChange={this.handleShippingStreetAddress} value={this.state.shippingStreetAddress} />
                        </div>
 
                    </div>
                    <div className="col-sm-5">
                        <div className="form-group">
-                           <label for="shipping_city">City</label>
+                           <label htmlFor="shipping_city">City</label>
                            <input type="text" id="shipping_city" name="shipping_city" placeholder="City" className="form-control" onChange={this.handleShippingCity} value={this.state.shippingCity} />
 
                        </div>
@@ -252,13 +251,13 @@ handleBillingCountry(e) {
                    </div>
                    <div className="col-sm-2">
                        <div className="form-group">
-                           <label for="shipping_state">State</label>
-                           <input type="text" id="shipping_state" name="state" maxlength="2" className="form-control" onChange={this.handleShippingState} value={this.state.shippingState} />
+                           <label htmlFor="shipping_state">State</label>
+                           <input type="text" id="shipping_state" name="state" maxLength="2" className="form-control" onChange={this.handleShippingState} value={this.state.shippingState} />
                        </div>
                    </div>
                        <div className="col-sm-6">
                            <div className="form-group">
-                               <label for="shipping_zip_code">Zip Code</label>
+                               <label htmlFor="shipping_zip_code">Zip Code</label>
                                <input type="text" id="shipping_zip_code" name="shipping_zip_code" placeholder="Zip Code" className="form-control" onChange={this.handleShippingZipCode} value={this.state.shippingZipCode} />
 
                            </div>
@@ -266,7 +265,7 @@ handleBillingCountry(e) {
                        </div>
                        <div className="col-sm-6">
                            <div className="form-group">
-                               <label for="shipping_country">Country</label>
+                               <label htmlFor="shipping_country">Country</label>
                                <select className="form-control" id="shipping_country" name="shipping_country" onChange={this.handleShippingCountry} value={this.state.shippingCountry}>
                                    <option value="US">US</option>
                                    <option value="CA">Canada</option>
@@ -291,7 +290,7 @@ handleBillingCountry(e) {
                    </div>
                    <div className="col-sm-5">
                        <div className="form-group">
-                           <label for="billing_city">City</label>
+                           <label htmlFor="billing_city">City</label>
                            <input type="text" id="billing_city" name="billing_city" placeholder="City" className="form-control" onChange={this.handleBillingCity} value={this.state.billingCity} required />
 
                        </div>
@@ -299,13 +298,13 @@ handleBillingCountry(e) {
                    </div>
                    <div className="col-sm-2">
                        <div className="form-group">
-                           <label for="billing_state">State</label>
-                           <input type="text" id="billing_state" name="billing_state" maxlength="2" className="form-control" onChange={this.handleBillingState} value={this.state.billingState} required />
+                           <label htmlFor="billing_state">State</label>
+                           <input type="text" id="billing_state" name="billing_state" maxLength="2" className="form-control" onChange={this.handleBillingState} value={this.state.billingState} required />
                        </div>
                    </div>
                        <div className="col-sm-6">
                            <div className="form-group">
-                               <label for="billing_zip_code">Zip Code</label>
+                               <label htmlFor="billing_zip_code">Zip Code</label>
                                <input type="text" id="billing_zip_code" name="billing_zip_code" placeholder="Zip Code" className="form-control" onChange={this.handleBillingZipCode} value={this.state.billingZipCode} required />
 
                            </div>
@@ -313,7 +312,7 @@ handleBillingCountry(e) {
                        </div>
                        <div className="col-sm-6">
                            <div className="form-group">
-                               <label for="billing_country">Country</label>
+                               <label htmlFor="billing_country">Country</label>
                                <select className="form-control" id="billing_country" name="billing_country" onChange={this.handleBillingCountry} value={this.state.billingCountry}>
                                    <option value="US">US</option>
                                    <option value="CA">Canada</option>
@@ -327,7 +326,7 @@ handleBillingCountry(e) {
 
                </div>
 
-   <div className="panel">
+   <div className="panel well">
        <div className="panel-heading"><h3>Payment Information</h3></div>
 
        <div className="row">

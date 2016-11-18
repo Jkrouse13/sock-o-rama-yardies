@@ -8,7 +8,7 @@ class Sock extends React.Component {
     constructor(props) {
         super(props)
         classAutoBind(this)
-        console.log(props.sock.sizes[0].id)
+        // console.log(props.sock.sizes[0].id)
         this.state = {
             // sharedState: sharedState(),
             modalIsOpen: false,
@@ -82,7 +82,7 @@ class Sock extends React.Component {
     }
 
     handleSizeChange(event) {
-        console.log(event.target.options[event.target.selectedIndex].value)
+        // console.log(event.target.options[event.target.selectedIndex].value)
         this.setState({size_id: event.target.options[event.target.selectedIndex].value});
     }
 

@@ -31,7 +31,7 @@ class Socks extends React.Component {
     }
 
     handleSocks(response) {
-        console.log('socks: ', response)
+        // console.log('socks: ', response)
         sharedState({
             socks: response.socks
         })
@@ -43,7 +43,7 @@ class Socks extends React.Component {
 
         })
 
-        console.log('render', this.state.socks)
+        // console.log('render', this.state.socks)
 
         return <div className="container">
             {this.state.checkedOut? <div className="alert alert-success alert-dismissible" role="alert">

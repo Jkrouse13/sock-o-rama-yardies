@@ -21,7 +21,8 @@ sharedState({
   billingCity: '',
   billingState: '',
   billingZipCode: '',
-  billingCountry: ''
+  billingCountry: '',
+  cart: {}
 })
 
 window.sharedState = sharedState
