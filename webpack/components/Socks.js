@@ -46,6 +46,10 @@ class Socks extends React.Component {
         console.log('render', this.state.socks)
 
         return <div className="container">
+            {this.state.checkedOut? <div className="alert alert-success alert-dismissible" role="alert">
+  <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Your order was successful.</strong> Thank you and enjoy your socks!
+</div> : ''}
             <div className="row">
                 <div className="col-sm-12 well">
                     <h3>Filters</h3>

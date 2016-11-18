@@ -7,7 +7,9 @@ sharedState({
   socks: [],
   line_items: [],
   itemsInCart: 0,
-  cartToken: ''
+  cartToken: '',
+  email: '',
+  checkedOut: false
 })
 
 window.sharedState = sharedState

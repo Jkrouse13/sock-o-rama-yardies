@@ -1,5 +1,6 @@
 import React from 'react'
 import { sharedState, attachSharedState, detachSharedState } from 'react-helpers/dist/sharedState'
+import { browserHistory } from 'react-router'
 import classAutoBind from 'react-helpers/dist/classAutoBind'
 
 class Checkout extends React.Component {
@@ -13,7 +14,7 @@ class Checkout extends React.Component {
     componentDidMount() {
         // attachSharedState(this, (state) => this.setState({sharedState: state}))
         attachSharedState(this)
-        Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+        Stripe.setPublishableKey('pk_test_wJs1paUureMQH0FA8YFJ4hN8');
     }
 
     componentWillUnmount() {
@@ -21,15 +22,77 @@ class Checkout extends React.Component {
     }
 
     handleSubmit(e) {
+      console.log('hi')
+        var $form = $('#payment-form');
+        console.log($form)
+        console.log(e.target)
         // Disable the submit button to prevent repeated clicks:
-        // $form.find('.submit').prop('disabled', true);
+        $form.find('.submit').prop('disabled', true);
 
         // Request a token from Stripe:
-        Stripe.card.createToken($form, stripeResponseHandler);
+        Stripe.card.createToken($form, this.stripeResponseHandler);
 
         // Prevent the form from being submitted:
         return false;
     }
+
+stripeResponseHandler(status, response) {
+  // Grab the form:
+  var $form = $('#payment-form');
+
+
+  if (response.error) { // Problem!
+
+    // Show the errors on the form:
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('.submit').prop('disabled', false); // Re-enable submission
+
+  } else { // Token was created!
+
+    // Get the token ID:
+    var token = response.id;
+
+    fetch('/charges?token=' + sharedState().cartToken, {
+      method: 'POST',
+      body: JSON.stringify(
+        {
+          stripeToken: token,
+          stripeEmail: this.state.email
+        }
+      ),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(this.handleStripResponse)
+
+    // Insert the token ID into the form so it gets submitted to the server:
+    // $form.append($('<input type="hidden" name="stripeToken">').val(token));
+
+    // Submit the form:
+    // $form.get(0).submit();
+  }
+}
+
+handleStripResponse(response) {
+  console.log(response)
+  if (response.success) {
+    sharedState({
+      line_items: [],
+      itemsInCart: 0,
+      cartToken: '',
+      checkedOut: true
+    })
+    browserHistory.push('/')
+  }
+}
+
+handleEmail(e) {
+  this.setState({
+    email: e.target.value
+  })
+}
 
     render() {
         return <div className="container headerMargin">
@@ -172,48 +235,54 @@ class Checkout extends React.Component {
 
        <div className="row">
        <div className="col-sm-6">
-       <form action="/your-charge-code" method="POST" id="payment-form">
+       <form action={'/charges?token=' + sharedState().cartToken}  method="POST" id="payment-form">
          <span className="payment-errors"></span>
+         <div className="form-group">
+           <label>
+             <span>Customer Email</span>
+             <input className="form-control" type="text" name="stripEmail" value={this.state.email} onChange={this.handleEmail}/>
+           </label>
+         </div>
 
          <div className="form-group">
            <label>
              <span>Card Number</span>
-             <input type="text" size="20" data-stripe="number"/>
+             <input type="text" className="form-control" size="20" data-stripe="number"/>
            </label>
          </div>
 
          <div className="form-group">
            <label>
              <span>Expiration (MM/YY)</span>
-             <input type="text" size="2" data-stripe="exp_month" />
+             <input type="text" className="form-control" size="2" data-stripe="exp_month" />
            </label>
            <span> / </span>
-           <input type="text" size="2" data-stripe="exp_year" />
+           <input type="text" className="form-control" size="2" data-stripe="exp_year" />
          </div>
 
          <div className="form-group">
            <label>
              <span>CVC</span>
-             <input type="text" size="4" data-stripe="cvc" />
+             <input type="text" className="form-control" size="4" data-stripe="cvc" />
            </label>
          </div>
 
          <div className="form-group">
            <label>
              <span>Billing Zip</span>
-             <input type="text" size="6" data-stripe="address_zip" />
+             <input type="text" className="form-control"  size="6" data-stripe="address_zip" />
            </label>
          </div>
 
          <div className="row form-group well">
              <div className="col-sm-6 col-sm-push-6 text-right">
                  <div>
-                     <button className="btn btn-primary btn-lg" onSubmit={this.handleSubmit}>Send</button>
+                     <button type="button" className="btn btn-primary btn-lg" onClick={this.handleSubmit}>Send</button>
                  </div>
              </div>
              <div className="col-sm-6 col-sm-pull-6">
                  <div>
-                     <button className="btn btn-danger btn-lg">Cancel</button>
+                     <button className="btn btn-danger btn-lg" onClick={() => browserHistory.push('/')}>Cancel</button>
                  </div>
              </div>
          </div>
