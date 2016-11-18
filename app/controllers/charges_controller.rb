@@ -5,8 +5,8 @@ class ChargesController < ApplicationController
     def create
         # Amount in cents
         @cart=Cart.find_by(token: params[:token])
-            @amount = @cart.grand_total
-            @cart.update(
+        @amount = @cart.grand_total
+        @cart.update(
             street: params[:shippingstreet],
             city:  params[:shippingcity],
             state:  params[:shippingstate],
@@ -14,22 +14,26 @@ class ChargesController < ApplicationController
             country:  params[:shippingcountry],
             first_name:  params[:firstname],
             last_name:  params[:lastname],
-            email:  params[:stripeEmail])
-            customer = Stripe::Customer.create(
-                email: params[:stripeEmail],
-                source: params[:stripeToken]
-                )
+            email:  params[:stripeEmail]
+            )
 
-                charge = Stripe::Charge.create(
-                customer: customer.id,
-                amount: @amount,
-                description: 'Rails Stripe customer',
-                currency: 'usd'
-                )
-                @cart.complete = true
-                render json: #cart, charge,
-                    {success: 'Thank you for shopping at Sock-O-Rama.' }
+        customer = Stripe::Customer.create(
+            email: params[:stripeEmail],
+            source: params[:stripeToken]
+            )
 
-            rescue Stripe::CardError
+        charge = Stripe::Charge.create(
+            customer: customer.id,
+            amount: @amount,
+            description: 'Rails Stripe customer',
+            currency: 'usd'
+            )
+        @cart.toggle(:complete)
+
+        render json: #cart, charge,
+            {success: 'Thank you for shopping at Sock-O-Rama.' }
+
+        rescue Stripe::CardError => e
+            render json: [e.message], status: :unprocessable_entity
     end
 end

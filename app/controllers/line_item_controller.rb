@@ -17,9 +17,11 @@ class LineItemController < ApplicationController
       # sock_id:    params[:sock_id]
       )
 
-      { success: 'Item was successfully added to cart.' }
-      @line_item.save
 
+      if params[:item_quantity].to_i < (Size.find(params[:size_id]).stock_quantity)
+        @line_item.save
+        { success: 'Item was successfully added to cart.' }
+      end
     else
       @line_item = LineItem.new(
       cart: Cart.new,
@@ -27,9 +29,12 @@ class LineItemController < ApplicationController
       item_quantity:  params[:item_quantity],
       # sock_id:    params[:sock_id]
       )
-      @line_item.save
-
+      if params[:item_quantity].to_i < (Size.find(params[:size_id]).stock_quantity)
+        @line_item.size.stock_quantity -= params[:item_quantity] 
+        @line_item.save
+      end
     end
+
       render json: @line_item
   end
 
