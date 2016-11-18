@@ -39,6 +39,7 @@ gem 'refile-postgres', '~> 1.4'
 gem 'rails_admin', '~> 1.0'
 gem 'google_drive'
 gem 'stripe'
+gem 'sendgrid-ruby'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
