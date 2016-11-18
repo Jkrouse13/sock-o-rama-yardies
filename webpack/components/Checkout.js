@@ -158,6 +158,7 @@ handleBillingStreetAddress(e) {
     var billingStreetAddress = e.target.value
     this.setState({
         billingStreetAddress: billingStreetAddress
+        
     })
 }
 
