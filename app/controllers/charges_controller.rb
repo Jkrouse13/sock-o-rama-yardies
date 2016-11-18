@@ -5,7 +5,16 @@ class ChargesController < ApplicationController
     def create
         # Amount in cents
         @cart=Cart.find_by(token: params[:token])
-            @amount = 500
+            @amount = @cart.grand_total
+            @cart.update(
+            street: params[:shippingstreet],
+            city:  params[:shippingcity],
+            state:  params[:shippingstate],
+            zip:  params[:shippingzip],
+            country:  params[:shippingcountry],
+            first_name:  params[:firstname],
+            last_name:  params[:lastname],
+            email:  params[:stripeEmail])
             customer = Stripe::Customer.create(
                 email: params[:stripeEmail],
                 source: params[:stripeToken]
