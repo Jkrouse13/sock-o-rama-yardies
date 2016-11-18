@@ -20,6 +20,7 @@
 npm-debug.log
 yarn-error.log
 
+/db/structure.sql
 
 # Ignore application configuration
 /config/application.yml
