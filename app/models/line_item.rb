@@ -4,4 +4,7 @@ class LineItem < ApplicationRecord
   def new
   end
 
+  def cost
+    (self.item_quantity * self.size.sock.price)
+  end
 end
