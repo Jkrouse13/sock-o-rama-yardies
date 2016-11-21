@@ -1,4 +1,7 @@
 class LineItemController < ApplicationController
+
+  before_action :find_cart, only: [:create]
+
   # def index #has template renders view
   # end
 
@@ -9,27 +12,11 @@ class LineItemController < ApplicationController
   # end
 
   def create
-    if params[:token]
-      @line_item = LineItem.new(
-      cart: Cart.where(token: params[:token]).first_or_initialize,
-      size_id:    params[:size_id],
-      item_quantity:  params[:item_quantity],
-      # sock_id:    params[:sock_id]
-      )
-
-      { success: 'Item was successfully added to cart.' }
-      @line_item.save
-
-    else
-      @line_item = LineItem.new(
-      cart: Cart.new,
-      size_id:    params[:size_id],
-      item_quantity:  params[:item_quantity],
-      # sock_id:    params[:sock_id]
+      @line_item = @cart.line_items.new(
+        size_id:    params[:size_id],
+        item_quantity:  params[:item_quantity]
       )
       @line_item.save
-
-    end
       render json: @line_item
   end
 
@@ -48,6 +35,16 @@ class LineItemController < ApplicationController
     @line_item = LineItem.find(params[:id])
     @line_item.destroy!
     render json: {success: 'Item was removed.' }
+  end
+
+  private
+
+  def find_cart
+    if params[:token]
+      @cart = Cart.where(token: params[:token]).first_or_initialize
+    else
+      @cart = Cart.new
+    end
   end
 
 end
